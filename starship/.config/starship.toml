@@ -57,7 +57,7 @@ format = "[$all_status$ahead_behind]($style)"
 disabled = false
 added_style = "fg:green bg:surface1"
 deleted_style = "fg:red bg:surface1"
-format = "[+$added]($added_style)/[-$deleted]($deleted_style)[ ](bg:surface1)"
+format = "[+$added](fg:green bg:surface1)[/](fg:overlay1 bg:surface1)[-$deleted](fg:red bg:surface1)[ ](bg:surface1)"
 
 [nodejs]
 symbol = " "

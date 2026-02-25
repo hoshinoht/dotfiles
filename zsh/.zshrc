@@ -100,6 +100,16 @@ if command -v tmux &>/dev/null && [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$VS
   tmux attach -t default 2>/dev/null || tmux new-session -s default
 fi
 
+# ── yazi (cd on exit) ────────────────────────────────────
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 # ── Tool inits (keep at bottom) ──────────────────────────
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
