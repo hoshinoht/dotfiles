@@ -113,6 +113,6 @@ function y() {
 }
 
 # ── Tool inits (keep at bottom) ──────────────────────────
-eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 # fastfetch
