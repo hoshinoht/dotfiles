@@ -42,6 +42,8 @@ alias ls='eza --icons --group-directories-first'
 alias ll='eza -la --icons --group-directories-first'
 alias l='eza -l --icons --group-directories-first'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias b='btop'
+alias d='lazydocker'
 
 # ── fzf ──────────────────────────────────────────────────
 source <(fzf --zsh)
