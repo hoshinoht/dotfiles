@@ -4,6 +4,7 @@
 theme = Catppuccin Macchiato
 background-opacity = 0.8
 background-blur-radius = 20
+minimum-contrast = 1.1
 
 # Modern Window Styling
 window-decoration = client
@@ -15,6 +16,11 @@ window-padding-y = 12
 # ---------------------------------------------------------
 font-family = "Hack Nerd Font"
 font-size = 14
+# ---------------------------------------------------------
+# Keybindings
+# ---------------------------------------------------------
+keybind = cmd+d=new_split:right
+
 # ---------------------------------------------------------
 # Cursor & Interaction
 # ---------------------------------------------------------
