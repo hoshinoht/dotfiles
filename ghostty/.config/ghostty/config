@@ -1,0 +1,31 @@
+# ---------------------------------------------------------
+# Appearance & Theme
+# ---------------------------------------------------------
+theme = Catppuccin Macchiato
+background-opacity = 0.8
+background-blur-radius = 20
+
+# Modern Window Styling
+window-decoration = client
+window-padding-x = 12
+window-padding-y = 12
+
+# ---------------------------------------------------------
+# Typography
+# ---------------------------------------------------------
+font-family = "Hack Nerd Font"
+font-size = 14
+# ---------------------------------------------------------
+# Cursor & Interaction
+# ---------------------------------------------------------
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
+copy-on-select = true
+
+# ---------------------------------------------------------
+# Shell & Integration
+# ---------------------------------------------------------
+shell-integration = zsh
+# This helps fix that autocompleter ghosting issue
+shell-integration-features = no-cursor,sudo

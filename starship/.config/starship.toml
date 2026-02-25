@@ -1,0 +1,141 @@
+format = """
+[](surface0)\
+$os\
+$directory\
+[](fg:surface0 bg:surface1)\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:surface1)\
+$nodejs\
+$python\
+$rust\
+$golang\
+$docker_context\
+$kubernetes\
+$fill\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
+
+palette = "catppuccin_macchiato"
+
+[os]
+disabled = false
+style = "fg:text bg:surface0"
+
+[os.symbols]
+Macos = " "
+Linux = " "
+Windows = " "
+
+[directory]
+style = "fg:blue bg:surface0"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = ".../"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+"projects" = "󰲋 "
+
+[git_branch]
+symbol = " "
+style = "fg:text bg:surface1"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "fg:text bg:surface1"
+format = "[$all_status$ahead_behind]($style)"
+
+[git_metrics]
+disabled = false
+added_style = "fg:green bg:surface1"
+deleted_style = "fg:red bg:surface1"
+format = "[+$added]($added_style)/[-$deleted]($deleted_style)[ ](bg:surface1)"
+
+[nodejs]
+symbol = " "
+style = "fg:green"
+format = "[ $symbol$version ]($style)"
+
+[python]
+symbol = " "
+style = "fg:yellow"
+format = "[ $symbol$version ]($style)"
+
+[rust]
+symbol = "󱘗 "
+style = "fg:peach"
+format = "[ $symbol$version ]($style)"
+
+[golang]
+symbol = " "
+style = "fg:blue"
+format = "[ $symbol$version ]($style)"
+
+[docker_context]
+symbol = " "
+style = "fg:sapphire"
+format = "[ $symbol$context ]($style)"
+
+[kubernetes]
+disabled = false
+symbol = "󱃾 "
+style = "fg:lavender"
+format = "[ $symbol$context ]($style)"
+
+[fill]
+symbol = " "
+
+[cmd_duration]
+min_time = 2_000
+style = "fg:subtext0"
+format = "[ 󱎫 $duration ]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:subtext0"
+format = "[ $time ]($style)"
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](mauve)"
+
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
