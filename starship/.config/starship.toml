@@ -19,7 +19,7 @@ $time\
 $line_break\
 $character"""
 
-palette = "catppuccin_macchiato"
+palette = "dusk"
 
 [os]
 disabled = false
@@ -31,7 +31,7 @@ Linux = " "
 Windows = " "
 
 [directory]
-style = "fg:blue bg:surface0"
+style = "fg:pink bg:surface0"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = ".../"
@@ -111,6 +111,34 @@ disabled = false
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](mauve)"
+
+[palettes.dusk]
+rosewater = "#FCE4DE"
+flamingo = "#F2BFB4"
+pink = "#F3BDCA"
+mauve = "#C4A2D4"
+red = "#E27878"
+maroon = "#E09898"
+peach = "#DDA05C"
+yellow = "#DEC47C"
+green = "#82C8A0"
+teal = "#6EC4B8"
+sky = "#75D6F6"
+sapphire = "#5CB8E4"
+blue = "#68ACE0"
+lavender = "#B0BCE8"
+text = "#F3F5FC"
+subtext1 = "#D2D5DE"
+subtext0 = "#B2B6C1"
+overlay2 = "#8F939F"
+overlay1 = "#7E828F"
+overlay0 = "#6E7280"
+surface2 = "#60646E"
+surface1 = "#52565F"
+surface0 = "#454850"
+base = "#393C43"
+mantle = "#2F3238"
+crust = "#26282D"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"

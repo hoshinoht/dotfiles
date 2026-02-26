@@ -1,10 +1,10 @@
 # ---------------------------------------------------------
 # Appearance & Theme
 # ---------------------------------------------------------
-theme = Catppuccin Macchiato
+theme = dusk
 background-opacity = 0.8
 background-blur-radius = 20
-minimum-contrast = 1.1
+minimum-contrast = 1.3
 
 # Modern Window Styling
 window-decoration = client
@@ -16,6 +16,7 @@ window-padding-y = 12
 # ---------------------------------------------------------
 font-family = "Hack Nerd Font"
 font-size = 14
+adjust-cell-height = 5%
 # ---------------------------------------------------------
 # Keybindings
 # ---------------------------------------------------------
@@ -35,3 +36,6 @@ copy-on-select = true
 shell-integration = zsh
 # This helps fix that autocompleter ghosting issue
 shell-integration-features = no-cursor,sudo
+
+
+auto-update-channel = tip
