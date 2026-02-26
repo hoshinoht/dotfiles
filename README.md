@@ -8,7 +8,7 @@ Custom **"Dusk"** color theme inspired by Takanashi Hoshino from Blue Archive â€
 
 ```bash
 brew install stow starship bat zoxide fd git-delta fastfetch
-cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch
+cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch btop lazygit lazydocker fsh
 ```
 
 ## Packages
@@ -22,6 +22,10 @@ cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch
 | `eza` | File listing colors (Dusk palette) |
 | `tmux` | Statusline, keybinds, Dusk theme on Catppuccin dark base |
 | `ghostty` | Terminal config + Dusk color scheme |
+| `btop` | System monitor with Dusk theme |
+| `lazygit` | Git TUI with Dusk border/selection colors |
+| `lazydocker` | Docker TUI with Dusk border/selection colors |
+| `fsh` | fast-syntax-highlighting Dusk theme for zsh |
 | `fastfetch` | System info display |
 
 ## Dusk Palette
