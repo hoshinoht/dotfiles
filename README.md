@@ -1,6 +1,8 @@
 # dotfiles
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/). Catppuccin Macchiato everywhere.
+Managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+Custom **"Dusk"** color theme inspired by Takanashi Hoshino from Blue Archive — her soft pinks and sky blues adapted for darker backgrounds. Built on top of Catppuccin Macchiato's base tones for contrast.
 
 ## Setup
 
@@ -14,10 +16,10 @@ cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch
 | Package | What it manages |
 |---|---|
 | `zsh` | `.zshrc` — oh-my-zsh, fzf, aliases, transient prompt |
-| `starship` | Two-line prompt with Catppuccin Macchiato palette |
+| `starship` | Minimalist two-line prompt with Dusk palette |
 | `bat` | Syntax highlighting with Catppuccin theme |
 | `git` | `.gitconfig` with delta side-by-side diffs |
-| `eza` | File listing colors (Catppuccin Macchiato) |
-| `tmux` | Statusline, keybinds, Catppuccin Macchiato theme |
-| `ghostty` | Terminal config + shaders |
+| `eza` | File listing colors (Dusk palette) |
+| `tmux` | Statusline, keybinds, Dusk theme on Catppuccin dark base |
+| `ghostty` | Terminal config + Dusk color scheme |
 | `fastfetch` | System info display |
