@@ -9,12 +9,18 @@ export PATH="$IDF_PATH/tools:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""  # Using Starship
 
+# Skip compaudit permission checks (saves ~15ms)
+ZSH_DISABLE_COMPFIX=true
+
+# Skip oh-my-zsh auto-update check at startup (saves ~6ms)
+zstyle ':omz:update' mode disabled  # Run `omz update` manually instead
+
 plugins=(
   git
   docker docker-compose
-  kubectl helm terraform aws gcloud azure
-  python pip node npm yarn golang rust
-  sudo extract history command-not-found vscode
+  kubectl
+  python pip node npm
+  sudo extract history
   zsh-autosuggestions
   fzf-tab
   fast-syntax-highlighting  # Must be last
@@ -46,7 +52,11 @@ alias b='btop'
 alias d='lazydocker'
 
 # ── fzf ──────────────────────────────────────────────────
-source <(fzf --zsh)
+# Cache fzf init to avoid fork on every shell launch
+if [[ ! -f ~/.fzf-zsh.cache || ~/.fzf-zsh.cache -ot $(command -v fzf) ]]; then
+  fzf --zsh > ~/.fzf-zsh.cache
+fi
+source ~/.fzf-zsh.cache
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS=" \
   --color=bg+:#363a4f,spinner:#f4dbd6,hl:#ed8796 \
@@ -97,10 +107,6 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd set_win_title
 add-zsh-hook preexec preexec_win_title
 
-# ── tmux auto-attach ─────────────────────────────────────
-if command -v tmux &>/dev/null && [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$VSCODE_PID" ]]; then
-  tmux attach -t default 2>/dev/null || tmux new-session -s default
-fi
 
 # ── yazi (cd on exit) ────────────────────────────────────
 function y() {
@@ -115,4 +121,8 @@ function y() {
 # ── Tool inits (keep at bottom) ──────────────────────────
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+alias z='__zoxide_z'
+alias zi='__zoxide_zi'
+# zoxide MUST be the very last init — suppress its false-positive doctor warning
+export _ZO_DOCTOR=0
 # fastfetch

@@ -1,21 +1,9 @@
 format = """
-[](surface0)\
-$os\
 $directory\
-[](fg:surface0 bg:surface1)\
 $git_branch\
 $git_status\
-$git_metrics\
-[](fg:surface1)\
-$nodejs\
-$python\
-$rust\
-$golang\
-$docker_context\
-$kubernetes\
 $fill\
 $cmd_duration\
-$time\
 $line_break\
 $character"""
 
@@ -31,10 +19,10 @@ Linux = " "
 Windows = " "
 
 [directory]
-style = "fg:pink bg:surface0"
-format = "[ $path ]($style)"
+style = "fg:pink"
+format = "[$path ]($style)"
 truncation_length = 3
-truncation_symbol = ".../"
+truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -45,19 +33,13 @@ truncation_symbol = ".../"
 "projects" = "󰲋 "
 
 [git_branch]
-symbol = " "
-style = "fg:text bg:surface1"
-format = "[ $symbol$branch ]($style)"
+symbol = ""
+style = "fg:sky"
+format = "[$symbol$branch ]($style)"
 
 [git_status]
-style = "fg:text bg:surface1"
-format = "[$all_status$ahead_behind]($style)"
-
-[git_metrics]
-disabled = false
-added_style = "fg:green bg:surface1"
-deleted_style = "fg:red bg:surface1"
-format = "[+$added](fg:green bg:surface1)[/](fg:overlay1 bg:surface1)[-$deleted](fg:red bg:surface1)[ ](bg:surface1)"
+style = "fg:overlay2"
+format = "[$all_status$ahead_behind ]($style)"
 
 [nodejs]
 symbol = " "
@@ -95,14 +77,11 @@ symbol = " "
 
 [cmd_duration]
 min_time = 2_000
-style = "fg:subtext0"
-format = "[ 󱎫 $duration ]($style)"
+style = "fg:overlay1"
+format = "[$duration ]($style)"
 
 [time]
-disabled = false
-time_format = "%H:%M"
-style = "fg:subtext0"
-format = "[ $time ]($style)"
+disabled = true
 
 [line_break]
 disabled = false
