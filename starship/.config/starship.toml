@@ -87,7 +87,7 @@ disabled = true
 disabled = false
 
 [character]
-success_symbol = "[❯](green)"
+success_symbol = "[❯](pink)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](mauve)"
 
