@@ -100,6 +100,10 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
+# ── History navigation (up/down arrow) ──────────────────
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 # ── Window title ─────────────────────────────────────────
 function set_win_title() { echo -ne "\033]0;${PWD/#$HOME/~}\007" }
 function preexec_win_title() { echo -ne "\033]0;${1}\007" }
