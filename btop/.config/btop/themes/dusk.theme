@@ -1,0 +1,86 @@
+# Dusk theme for btop
+# Based on Catppuccin Macchiato with Hoshino-inspired accents
+
+# Main background, empty for terminal default
+theme[main_bg]=""
+
+# Main text color
+theme[main_fg]="#F3F5FC"
+
+# Title color for boxes
+theme[title]="#F3F5FC"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#75D6F6"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#454850"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#75D6F6"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#7E828F"
+
+# Color of text appearing on top of graphs
+theme[graph_text]="#D2D5DE"
+
+# Background color of the percentage meters
+theme[meter_bg]="#454850"
+
+# Misc colors for processes box
+theme[proc_misc]="#F3BDCA"
+
+# Box outline colors
+theme[cpu_box]="#F3BDCA"
+theme[mem_box]="#82C8A0"
+theme[net_box]="#75D6F6"
+theme[proc_box]="#B0BCE8"
+
+# Box divider line and small boxes line color
+theme[div_line]="#6E7280"
+
+# Temperature graph (Green -> Yellow -> Red)
+theme[temp_start]="#82C8A0"
+theme[temp_mid]="#DEC47C"
+theme[temp_end]="#E27878"
+
+# CPU graph colors (Teal -> Sky -> Pink)
+theme[cpu_start]="#6EC4B8"
+theme[cpu_mid]="#75D6F6"
+theme[cpu_end]="#F3BDCA"
+
+# Mem/Disk free meter (Mauve -> Lavender)
+theme[free_start]="#C4A2D4"
+theme[free_mid]="#B0BCE8"
+theme[free_end]="#68ACE0"
+
+# Mem/Disk cached meter (Sapphire -> Lavender)
+theme[cached_start]="#5CB8E4"
+theme[cached_mid]="#68ACE0"
+theme[cached_end]="#B0BCE8"
+
+# Mem/Disk available meter (Peach -> Red)
+theme[available_start]="#DDA05C"
+theme[available_mid]="#E09898"
+theme[available_end]="#E27878"
+
+# Mem/Disk used meter (Green -> Teal -> Sky)
+theme[used_start]="#82C8A0"
+theme[used_mid]="#6EC4B8"
+theme[used_end]="#75D6F6"
+
+# Download graph colors (Pink -> Mauve)
+theme[download_start]="#F3BDCA"
+theme[download_mid]="#C4A2D4"
+theme[download_end]="#E27878"
+
+# Upload graph colors (Green -> Sky)
+theme[upload_start]="#82C8A0"
+theme[upload_mid]="#6EC4B8"
+theme[upload_end]="#75D6F6"
+
+# Process box color gradient (Sky -> Pink -> Mauve)
+theme[process_start]="#75D6F6"
+theme[process_mid]="#F3BDCA"
+theme[process_end]="#C4A2D4"
