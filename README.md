@@ -36,34 +36,34 @@ Built on Catppuccin Macchiato's dark base tones, with Hoshino-inspired pinks and
 
 | Name | Hex | Preview |
 |---|---|---|
-| Rosewater | `#FCE4DE` | ![](https://img.shields.io/badge/%20%20-FCE4DE?style=flat-square&labelColor=FCE4DE) |
-| Flamingo | `#F2BFB4` | ![](https://img.shields.io/badge/%20%20-F2BFB4?style=flat-square&labelColor=F2BFB4) |
-| Pink | `#F3BDCA` | ![](https://img.shields.io/badge/%20%20-F3BDCA?style=flat-square&labelColor=F3BDCA) |
-| Mauve | `#C4A2D4` | ![](https://img.shields.io/badge/%20%20-C4A2D4?style=flat-square&labelColor=C4A2D4) |
-| Red | `#E27878` | ![](https://img.shields.io/badge/%20%20-E27878?style=flat-square&labelColor=E27878) |
-| Maroon | `#E09898` | ![](https://img.shields.io/badge/%20%20-E09898?style=flat-square&labelColor=E09898) |
-| Peach | `#DDA05C` | ![](https://img.shields.io/badge/%20%20-DDA05C?style=flat-square&labelColor=DDA05C) |
-| Yellow | `#DEC47C` | ![](https://img.shields.io/badge/%20%20-DEC47C?style=flat-square&labelColor=DEC47C) |
-| Green | `#82C8A0` | ![](https://img.shields.io/badge/%20%20-82C8A0?style=flat-square&labelColor=82C8A0) |
-| Teal | `#6EC4B8` | ![](https://img.shields.io/badge/%20%20-6EC4B8?style=flat-square&labelColor=6EC4B8) |
-| Sky | `#75D6F6` | ![](https://img.shields.io/badge/%20%20-75D6F6?style=flat-square&labelColor=75D6F6) |
-| Sapphire | `#5CB8E4` | ![](https://img.shields.io/badge/%20%20-5CB8E4?style=flat-square&labelColor=5CB8E4) |
-| Blue | `#68ACE0` | ![](https://img.shields.io/badge/%20%20-68ACE0?style=flat-square&labelColor=68ACE0) |
-| Lavender | `#B0BCE8` | ![](https://img.shields.io/badge/%20%20-B0BCE8?style=flat-square&labelColor=B0BCE8) |
+| Rosewater | `#FCE4DE` | ![](palette/rosewater.svg) |
+| Flamingo | `#F2BFB4` | ![](palette/flamingo.svg) |
+| Pink | `#F3BDCA` | ![](palette/pink.svg) |
+| Mauve | `#C4A2D4` | ![](palette/mauve.svg) |
+| Red | `#E27878` | ![](palette/red.svg) |
+| Maroon | `#E09898` | ![](palette/maroon.svg) |
+| Peach | `#DDA05C` | ![](palette/peach.svg) |
+| Yellow | `#DEC47C` | ![](palette/yellow.svg) |
+| Green | `#82C8A0` | ![](palette/green.svg) |
+| Teal | `#6EC4B8` | ![](palette/teal.svg) |
+| Sky | `#75D6F6` | ![](palette/sky.svg) |
+| Sapphire | `#5CB8E4` | ![](palette/sapphire.svg) |
+| Blue | `#68ACE0` | ![](palette/blue.svg) |
+| Lavender | `#B0BCE8` | ![](palette/lavender.svg) |
 
 ### Text & Surfaces
 
 | Name | Hex | Preview |
 |---|---|---|
-| Text | `#F3F5FC` | ![](https://img.shields.io/badge/%20%20-F3F5FC?style=flat-square&labelColor=F3F5FC) |
-| Subtext 1 | `#D2D5DE` | ![](https://img.shields.io/badge/%20%20-D2D5DE?style=flat-square&labelColor=D2D5DE) |
-| Subtext 0 | `#B2B6C1` | ![](https://img.shields.io/badge/%20%20-B2B6C1?style=flat-square&labelColor=B2B6C1) |
-| Overlay 2 | `#8F939F` | ![](https://img.shields.io/badge/%20%20-8F939F?style=flat-square&labelColor=8F939F) |
-| Overlay 1 | `#7E828F` | ![](https://img.shields.io/badge/%20%20-7E828F?style=flat-square&labelColor=7E828F) |
-| Overlay 0 | `#6E7280` | ![](https://img.shields.io/badge/%20%20-6E7280?style=flat-square&labelColor=6E7280) |
-| Surface 2 | `#60646E` | ![](https://img.shields.io/badge/%20%20-60646E?style=flat-square&labelColor=60646E) |
-| Surface 1 | `#52565F` | ![](https://img.shields.io/badge/%20%20-52565F?style=flat-square&labelColor=52565F) |
-| Surface 0 | `#454850` | ![](https://img.shields.io/badge/%20%20-454850?style=flat-square&labelColor=454850) |
-| Base | `#393C43` | ![](https://img.shields.io/badge/%20%20-393C43?style=flat-square&labelColor=393C43) |
-| Mantle | `#2F3238` | ![](https://img.shields.io/badge/%20%20-2F3238?style=flat-square&labelColor=2F3238) |
-| Crust | `#26282D` | ![](https://img.shields.io/badge/%20%20-26282D?style=flat-square&labelColor=26282D) |
+| Text | `#F3F5FC` | ![](palette/text.svg) |
+| Subtext 1 | `#D2D5DE` | ![](palette/subtext1.svg) |
+| Subtext 0 | `#B2B6C1` | ![](palette/subtext0.svg) |
+| Overlay 2 | `#8F939F` | ![](palette/overlay2.svg) |
+| Overlay 1 | `#7E828F` | ![](palette/overlay1.svg) |
+| Overlay 0 | `#6E7280` | ![](palette/overlay0.svg) |
+| Surface 2 | `#60646E` | ![](palette/surface2.svg) |
+| Surface 1 | `#52565F` | ![](palette/surface1.svg) |
+| Surface 0 | `#454850` | ![](palette/surface0.svg) |
+| Base | `#393C43` | ![](palette/base.svg) |
+| Mantle | `#2F3238` | ![](palette/mantle.svg) |
+| Crust | `#26282D` | ![](palette/crust.svg) |
