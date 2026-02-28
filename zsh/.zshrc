@@ -19,7 +19,7 @@ plugins=(
   git
   docker docker-compose
   kubectl
-  python pip node npm
+  python pip bun
   sudo extract history
   zsh-autosuggestions
   fzf-tab
@@ -59,10 +59,10 @@ fi
 source ~/.fzf-zsh.cache
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#363a4f,spinner:#f4dbd6,hl:#ed8796 \
-  --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
-  --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
-  --color=selected-bg:#494d64 \
+  --color=bg+:#454850,spinner:#FCE4DE,hl:#E27878 \
+  --color=fg:#F3F5FC,header:#E27878,info:#C4A2D4,pointer:#FCE4DE \
+  --color=marker:#B0BCE8,fg+:#F3F5FC,prompt:#C4A2D4,hl+:#E27878 \
+  --color=selected-bg:#52565F \
   --border=rounded --height=50%"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --icons --color=always {} | head -50'"
@@ -90,7 +90,7 @@ zle-line-init() {
     [[ -o ignore_eof ]] || exit 0
   done
   local saved_prompt=$PROMPT saved_rprompt=$RPROMPT
-  PROMPT='%(?.%F{#a6da95}.%F{#ed8796})❯%f '
+  PROMPT='%(?.%F{#82C8A0}.%F{#E27878})❯%f '
   RPROMPT=''
   zle .reset-prompt
   PROMPT=$saved_prompt
@@ -130,3 +130,7 @@ alias zi='__zoxide_zi'
 # zoxide MUST be the very last init — suppress its false-positive doctor warning
 export _ZO_DOCTOR=0
 # fastfetch
+fastfetch
+
+# direnv - auto-load .envrc in project dirs
+eval "$(direnv hook zsh)"

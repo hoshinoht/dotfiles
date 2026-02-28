@@ -16,7 +16,7 @@ window-save-state = always
 # ---------------------------------------------------------
 # Typography
 # ---------------------------------------------------------
-font-family = "Hack Nerd Font"
+font-family = "Google Sans Mono"
 font-size = 14
 adjust-cell-height = 5%
 # ---------------------------------------------------------
@@ -38,6 +38,3 @@ copy-on-select = true
 shell-integration = zsh
 # This helps fix that autocompleter ghosting issue
 shell-integration-features = no-cursor,sudo
-
-
-auto-update-channel = tip

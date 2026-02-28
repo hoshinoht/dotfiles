@@ -78,14 +78,14 @@
   navigate = true
   side-by-side = true
   line-numbers = true
-  syntax-theme = "Catppuccin Macchiato"
-  minus-style = "syntax #3a273a"
-  minus-emph-style = "syntax #6e3b3b"
-  plus-style = "syntax #273a2a"
-  plus-emph-style = "syntax #3b6e3b"
-  line-numbers-minus-style = "#ed8796"
-  line-numbers-plus-style = "#a6da95"
-  line-numbers-zero-style = "#6e738d"
+  syntax-theme = "Dusk"
+  minus-style = "syntax #3a2a2d"
+  minus-emph-style = "syntax #5e3535"
+  plus-style = "syntax #2a3a2d"
+  plus-emph-style = "syntax #355e35"
+  line-numbers-minus-style = "#E27878"
+  line-numbers-plus-style = "#82C8A0"
+  line-numbers-zero-style = "#6E7280"
   hunk-header-style = "file line-number syntax"
 
 [merge]
