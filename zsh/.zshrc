@@ -1,9 +1,11 @@
 # ── Path ─────────────────────────────────────────────────
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/go/bin"
 export PATH="/Users/cantabile/.antigravity/antigravity/bin:$PATH"
-export IDF_PATH=~/esp/esp-idf
+export IDF_PATH=~/esp/esp-idf-v5.5.3
 export PATH="$IDF_PATH/tools:$PATH"
+alias get_idf='source ~/esp/esp-idf-v5.5.3/export.sh'
 
 # ── oh-my-zsh ────────────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
@@ -14,6 +16,9 @@ ZSH_DISABLE_COMPFIX=true
 
 # Skip oh-my-zsh auto-update check at startup (saves ~6ms)
 zstyle ':omz:update' mode disabled  # Run `omz update` manually instead
+
+# Autosuggestion ghost text in Dusk overlay0
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6E7280'
 
 plugins=(
   git
@@ -27,6 +32,11 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Load the repo-managed Dusk syntax theme without rebuilding it every shell.
+if [[ ${FAST_THEME_NAME:-default} != dusk ]]; then
+  fast-theme -q dusk
+fi
 
 # ── Options ──────────────────────────────────────────────
 unsetopt prompt_sp
@@ -50,6 +60,9 @@ alias l='eza -l --icons --group-directories-first'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias b='btop'
 alias d='lazydocker'
+
+# ── LS_COLORS (Dusk) ─────────────────────────────────────
+source ~/.dotfiles/zsh/ls_colors.zsh
 
 # ── fzf ──────────────────────────────────────────────────
 # Cache fzf init to avoid fork on every shell launch
@@ -90,7 +103,7 @@ zle-line-init() {
     [[ -o ignore_eof ]] || exit 0
   done
   local saved_prompt=$PROMPT saved_rprompt=$RPROMPT
-  PROMPT='%(?.%F{#82C8A0}.%F{#E27878})❯%f '
+  PROMPT='%(?.%F{#F3BDCA}.%F{#E27878})❯%f '
   RPROMPT=''
   zle .reset-prompt
   PROMPT=$saved_prompt
@@ -134,3 +147,16 @@ fastfetch
 
 # direnv - auto-load .envrc in project dirs
 eval "$(direnv hook zsh)"
+eval "$(pyenv init -)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/cantabile/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# opencode
+export PATH=/Users/cantabile/.opencode/bin:$PATH
+[ -f ~/.config/opencode/.env ] && set -a && source ~/.config/opencode/.env && set +a
+
+# Added by Antigravity
+export PATH="/Users/cantabile/.antigravity/antigravity/bin:$PATH"

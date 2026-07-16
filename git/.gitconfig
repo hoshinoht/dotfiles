@@ -1,6 +1,7 @@
 [user]
 	name = hoshino
   email = pohaoting@gmail.com
+	signingkey = /Users/cantabile/.ssh/id_ed25519.pub
 
 
 [core]
@@ -79,10 +80,10 @@
   side-by-side = true
   line-numbers = true
   syntax-theme = "Dusk"
-  minus-style = "syntax #3a2a2d"
-  minus-emph-style = "syntax #5e3535"
-  plus-style = "syntax #2a3a2d"
-  plus-emph-style = "syntax #355e35"
+  minus-style = "syntax #533F43"
+  minus-emph-style = "syntax #6E4B4E"
+  plus-style = "syntax #40504D"
+  plus-emph-style = "syntax #4C675C"
   line-numbers-minus-style = "#E27878"
   line-numbers-plus-style = "#82C8A0"
   line-numbers-zero-style = "#6E7280"
@@ -96,3 +97,9 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
