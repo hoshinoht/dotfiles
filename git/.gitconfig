@@ -80,13 +80,13 @@
   side-by-side = true
   line-numbers = true
   syntax-theme = "Dusk"
-  minus-style = "syntax #533F43"
-  minus-emph-style = "syntax #6E4B4E"
-  plus-style = "syntax #40504D"
-  plus-emph-style = "syntax #4C675C"
-  line-numbers-minus-style = "#E27878"
-  line-numbers-plus-style = "#82C8A0"
-  line-numbers-zero-style = "#6E7280"
+  minus-style = "syntax #3A252D"
+  minus-emph-style = "syntax #56323B"
+  plus-style = "syntax #22352D"
+  plus-emph-style = "syntax #2E4A3A"
+  line-numbers-minus-style = "#FF8F9A"
+  line-numbers-plus-style = "#9BE6B5"
+  line-numbers-zero-style = "#697080"
   hunk-header-style = "file line-number syntax"
 
 [merge]

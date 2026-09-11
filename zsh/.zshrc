@@ -1,162 +1,295 @@
 # ── Path ─────────────────────────────────────────────────
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="/Users/cantabile/.antigravity/antigravity/bin:$PATH"
-export IDF_PATH=~/esp/esp-idf-v5.5.3
-export PATH="$IDF_PATH/tools:$PATH"
-alias get_idf='source ~/esp/esp-idf-v5.5.3/export.sh'
+# Zsh's $path array is tied directly to $PATH.
+# -U automatically removes duplicate entries.
+typeset -U path PATH
+
+path=(
+  "$HOME/.local/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.opencode/bin"
+  "$HOME/.lmstudio/bin"
+  "$HOME/.pub-cache/bin"
+  "$HOME/go/bin"
+  $path
+)
+
+export PATH
+
+
+# ── SDKs ─────────────────────────────────────────────────
+export IDF_PATH="$HOME/esp/esp-idf-v5.5.3"
+export PICO_SDK_PATH="$HOME/Projects/sit/inf2004/pico-sdk"
+export PICO_BOARD="pico_w"
+
+function get_idf() {
+  source "$IDF_PATH/export.sh"
+}
+
 
 # ── oh-my-zsh ────────────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME=""  # Using Starship
 
-# Skip compaudit permission checks (saves ~15ms)
+# Prompt is handled by Starship.
+ZSH_THEME=""
+
+# Skip compaudit permission checks.
 ZSH_DISABLE_COMPFIX=true
 
-# Skip oh-my-zsh auto-update check at startup (saves ~6ms)
-zstyle ':omz:update' mode disabled  # Run `omz update` manually instead
+# Disable automatic OMZ update checks.
+# Run `omz update` manually.
+zstyle ':omz:update' mode disabled
 
-# Autosuggestion ghost text in Dusk overlay0
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6E7280'
+# Autosuggestion ghost text.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#697080'
 
 plugins=(
   git
-  docker docker-compose
+  docker
+  docker-compose
   kubectl
-  python pip bun
-  sudo extract history
-  zsh-autosuggestions
+  python
+  pip
+  bun
+  sudo
+  extract
+  history
+
+  # ZLE-sensitive plugins — ordering matters.
   fzf-tab
-  fast-syntax-highlighting  # Must be last
+  zsh-autosuggestions
+  fast-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
-# Load the repo-managed Dusk syntax theme without rebuilding it every shell.
+
+# ── Fast Syntax Highlighting ──────────────────────────────
+# Load repo-managed Dusk theme without rebuilding it
+# on every shell startup.
 if [[ ${FAST_THEME_NAME:-default} != dusk ]]; then
   fast-theme -q dusk
 fi
 
+
 # ── Options ──────────────────────────────────────────────
 unsetopt prompt_sp
 
+
 # ── Environment ──────────────────────────────────────────
-export EDITOR=nvim
+export EDITOR="nvim"
+
 export EZA_CONFIG_DIR="$HOME/.config/eza"
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-PICO_SDK_PATH=~/Projects/sit/inf2004/pico-sdk
-PICO_BOARD=pico_w
+
 
 # ── Aliases ──────────────────────────────────────────────
 alias vim='nvim'
-alias python='python3'
-alias pip='pip3'
 alias cat='bat --paging=never'
-alias ls='eza --icons --group-directories-first'
-alias ll='eza -la --icons --group-directories-first'
-alias l='eza -l --icons --group-directories-first'
+
+if (( $+commands[eza] )); then
+  alias ls='eza --icons --group-directories-first'
+  alias ll='eza -la --icons --group-directories-first'
+  alias l='eza -l --icons --group-directories-first'
+else
+  alias ls='ls -G'
+  alias ll='ls -laG'
+  alias l='ls -lG'
+fi
+
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 alias b='btop'
 alias d='lazydocker'
+alias ff='fastfetch'
+
 
 # ── LS_COLORS (Dusk) ─────────────────────────────────────
-source ~/.dotfiles/zsh/ls_colors.zsh
+[[ -f "$HOME/.dotfiles/zsh/ls_colors.zsh" ]] &&
+  source "$HOME/.dotfiles/zsh/ls_colors.zsh"
+
 
 # ── fzf ──────────────────────────────────────────────────
-# Cache fzf init to avoid fork on every shell launch
-if [[ ! -f ~/.fzf-zsh.cache || ~/.fzf-zsh.cache -ot $(command -v fzf) ]]; then
-  fzf --zsh > ~/.fzf-zsh.cache
-fi
-source ~/.fzf-zsh.cache
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#454850,spinner:#FCE4DE,hl:#E27878 \
-  --color=fg:#F3F5FC,header:#E27878,info:#C4A2D4,pointer:#FCE4DE \
-  --color=marker:#B0BCE8,fg+:#F3F5FC,prompt:#C4A2D4,hl+:#E27878 \
-  --color=selected-bg:#52565F \
-  --border=rounded --height=50%"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --icons --color=always {} | head -50'"
+if (( $+commands[fzf] )); then
+  FZF_ZSH_CACHE="$HOME/.cache/fzf-zsh.zsh"
 
-# fzf-tab: rich previews
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --icons --color=always $realpath | head -50'
-zstyle ':fzf-tab:complete:ls:*' fzf-preview 'eza --tree --icons --color=always $realpath | head -50'
-zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps -p $word -o pid,user,%cpu,%mem,command'
-zstyle ':fzf-tab:complete:git-(checkout|diff|log):*' fzf-preview \
-  'git log --oneline --graph --color=always $word -- 2>/dev/null | head -30'
-zstyle ':fzf-tab:complete:brew-(install|info|uninstall):*' fzf-preview \
-  'brew info $word 2>/dev/null | head -20'
+  mkdir -p "${FZF_ZSH_CACHE:h}"
+
+  if [[ ! -f "$FZF_ZSH_CACHE" || "$FZF_ZSH_CACHE" -ot "$commands[fzf]" ]]; then
+    fzf --zsh >| "$FZF_ZSH_CACHE"
+  fi
+
+  source "$FZF_ZSH_CACHE"
+fi
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A \
+  --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 \
+  --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A \
+  --color=selected-bg:#414B5E \
+  --border=rounded \
+  --height=50%"
+
+export FZF_CTRL_T_OPTS="\
+--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
+export FZF_ALT_C_OPTS="\
+--preview 'eza --tree --icons --color=always {} | head -50'"
+
+
+# ── fzf-tab ──────────────────────────────────────────────
+zstyle ':fzf-tab:complete:cd:*' \
+  fzf-preview 'eza --tree --icons --color=always $realpath | head -50'
+
+zstyle ':fzf-tab:complete:ls:*' \
+  fzf-preview 'eza --tree --icons --color=always $realpath | head -50'
+
+zstyle ':fzf-tab:complete:kill:argument-rest' \
+  fzf-preview 'ps -p $word -o pid,user,%cpu,%mem,command'
+
+zstyle ':fzf-tab:complete:git-(checkout|diff|log):*' \
+  fzf-preview 'git log --oneline --graph --color=always $word -- 2>/dev/null | head -30'
+
+zstyle ':fzf-tab:complete:brew-(install|info|uninstall):*' \
+  fzf-preview 'brew info $word 2>/dev/null | head -20'
+
 zstyle ':fzf-tab:*' continuous-trigger tab
+
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
 
-# ── Transient prompt ─────────────────────────────────────
-# Collapses previous prompts to minimal ">" after command runs
+
+# ── Transient Prompt ─────────────────────────────────────
+# Collapse previous prompts to a minimal ❯ after a
+# command is executed.
 zle-line-init() {
   [[ $CONTEXT == start ]] || return 0
+
   while true; do
     zle .recursive-edit
+
     local -i ret=$?
+
     [[ $ret == 0 && $KEYS == $'\4' ]] || break
     [[ -o ignore_eof ]] || exit 0
   done
-  local saved_prompt=$PROMPT saved_rprompt=$RPROMPT
-  PROMPT='%(?.%F{#F3BDCA}.%F{#E27878})❯%f '
+
+  local saved_prompt=$PROMPT
+  local saved_rprompt=$RPROMPT
+
+  PROMPT='%(?.%F{#FFB8D1}.%F{#FF8F9A})❯%f '
   RPROMPT=''
+
   zle .reset-prompt
+
   PROMPT=$saved_prompt
   RPROMPT=$saved_rprompt
-  if (( ret )); then zle .send-break; else zle .accept-line; fi
+
+  if (( ret )); then
+    zle .send-break
+  else
+    zle .accept-line
+  fi
+
   return ret
 }
+
 zle -N zle-line-init
 
-# ── History navigation (up/down arrow) ──────────────────
+
+# ── History Navigation ───────────────────────────────────
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# ── Window title ─────────────────────────────────────────
-function set_win_title() { echo -ne "\033]0;${PWD/#$HOME/~}\007" }
-function preexec_win_title() { echo -ne "\033]0;${1}\007" }
+
+# ── Window Title ─────────────────────────────────────────
+function set_win_title() {
+  printf '\033]0;%s\007' "${PWD/#$HOME/~}"
+}
+
+function preexec_win_title() {
+  printf '\033]0;%s\007' "$1"
+}
+
 autoload -Uz add-zsh-hook
+
 add-zsh-hook precmd set_win_title
 add-zsh-hook preexec preexec_win_title
 
 
-# ── yazi (cd on exit) ────────────────────────────────────
+# ── Yazi ─────────────────────────────────────────────────
+# Change the current shell directory when exiting Yazi.
 function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  local tmp
+  local cwd
+
+  tmp="$(mktemp -t 'yazi-cwd.XXXXXX')" || return
+
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+
+  if cwd="$(command cat -- "$tmp")" &&
+     [[ -n "$cwd" && "$cwd" != "$PWD" ]]; then
     builtin cd -- "$cwd"
   fi
-  rm -f -- "$tmp"
+
+  command rm -f -- "$tmp"
 }
 
-# ── Tool inits (keep at bottom) ──────────────────────────
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh --cmd cd)"
-alias z='__zoxide_z'
-alias zi='__zoxide_zi'
-# zoxide MUST be the very last init — suppress its false-positive doctor warning
-export _ZO_DOCTOR=0
-# fastfetch
-fastfetch
 
-# direnv - auto-load .envrc in project dirs
-eval "$(direnv hook zsh)"
-eval "$(pyenv init -)"
+# ── Tool Initialization ──────────────────────────────────
+# Keep shell-generated initialization near the bottom.
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/cantabile/.lmstudio/bin"
-# End of LM Studio CLI section
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi
+
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh --cmd cd)"
+
+  alias z='__zoxide_z'
+  alias zi='__zoxide_zi'
+
+  # Suppress zoxide's false-positive doctor warning.
+  export _ZO_DOCTOR=0
+fi
+
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
+
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init - zsh)"
+fi
 
 
-# opencode
-export PATH=/Users/cantabile/.opencode/bin:$PATH
-[ -f ~/.config/opencode/.env ] && set -a && source ~/.config/opencode/.env && set +a
+# ── OpenCode ─────────────────────────────────────────────
+# Load OpenCode secrets only for the OpenCode process
+# instead of exporting them to every child process.
+function opencode() {
+  (
+    if [[ -f "$HOME/.config/opencode/.env" ]]; then
+      set -a
+      source "$HOME/.config/opencode/.env"
+      set +a
+    fi
 
-# Added by Antigravity
-export PATH="/Users/cantabile/.antigravity/antigravity/bin:$PATH"
+    command opencode "$@"
+  )
+}
+
+
+# ── Bun Completions ──────────────────────────────────────
+[[ -s "$HOME/.bun/_bun" ]] &&
+  source "$HOME/.bun/_bun"
+
+
+# ── Fastfetch ────────────────────────────────────────────
+# Run manually with `ff`.
+#
+# Uncomment if you specifically want Fastfetch every time
+# an interactive shell opens.
+#
+# (( $+commands[fastfetch] )) && fastfetch

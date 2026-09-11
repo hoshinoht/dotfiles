@@ -11,6 +11,17 @@ brew install stow starship bat zoxide fd git-delta fastfetch
 cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch btop lazygit lazydocker fsh
 ```
 
+### Ghostty Dusk High Contrast
+
+Ghostty now uses `dusk-high-contrast` by default. To open a separate instance
+that quits after its last window closes, run:
+
+```bash
+~/.config/ghostty/launch-dusk-high-contrast
+```
+
+This uses the same Ghostty settings as your normal windows.
+
 ## Packages
 
 | Package | What it manages |

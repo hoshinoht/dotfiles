@@ -1,0 +1,14 @@
+#!/bin/zsh
+set -e
+
+config_dir="${0:A:h}"
+theme_file="${config_dir}/themes/dusk-high-contrast"
+
+if [[ ! -f "$theme_file" ]]; then
+  print -u2 "dusk-high-contrast theme not found: $theme_file"
+  exit 1
+fi
+
+exec open -na Ghostty.app --args \
+  "--theme=$theme_file" \
+  --quit-after-last-window-closed=true
