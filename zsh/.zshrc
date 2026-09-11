@@ -3,27 +3,50 @@
 # -U automatically removes duplicate entries.
 typeset -U path PATH
 
-path=(
-  "$HOME/.local/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/.opencode/bin"
-  "$HOME/.lmstudio/bin"
-  "$HOME/.pub-cache/bin"
-  "$HOME/go/bin"
-  $path
-)
+typeset -a local_paths
+
+for local_path in \
+  "$HOME/.local/bin" \
+  "$HOME/.cargo/bin" \
+  "$HOME/.opencode/bin" \
+  "$HOME/.lmstudio/bin" \
+  "$HOME/.pub-cache/bin" \
+  "$HOME/go/bin"; do
+  path=("${(@)path:#${local_path}}")
+  [[ -d "$local_path" ]] && local_paths+=("$local_path")
+done
+
+path=($local_paths $path)
+
+unset local_path local_paths
 
 export PATH
 
 
 # ── SDKs ─────────────────────────────────────────────────
-export IDF_PATH="$HOME/esp/esp-idf-v5.5.3"
-export PICO_SDK_PATH="$HOME/Projects/sit/inf2004/pico-sdk"
-export PICO_BOARD="pico_w"
+if [[ -n ${IDF_PATH:-} && ! -d "$IDF_PATH" ]]; then
+  unset IDF_PATH
+fi
 
 function get_idf() {
-  source "$IDF_PATH/export.sh"
+  local idf_path="${IDF_PATH:-$HOME/esp/esp-idf-v5.5.3}"
+
+  if [[ ! -f "$idf_path/export.sh" ]]; then
+    print -u2 "ESP-IDF not found: $idf_path"
+    return 1
+  fi
+
+  source "$idf_path/export.sh"
 }
+
+if [[ -n ${PICO_SDK_PATH:-} && ! -d "$PICO_SDK_PATH" ]]; then
+  unset PICO_SDK_PATH PICO_BOARD
+fi
+
+if [[ -z ${PICO_SDK_PATH:-} && -d "$HOME/Projects/sit/inf2004/pico-sdk" ]]; then
+  export PICO_SDK_PATH="$HOME/Projects/sit/inf2004/pico-sdk"
+  export PICO_BOARD="pico_w"
+fi
 
 
 # ── oh-my-zsh ────────────────────────────────────────────
