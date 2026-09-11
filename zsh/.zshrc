@@ -80,18 +80,9 @@ plugins=(
   # ZLE-sensitive plugins — ordering matters.
   fzf-tab
   zsh-autosuggestions
-  fast-syntax-highlighting
 )
 
 source "$ZSH/oh-my-zsh.sh"
-
-
-# ── Fast Syntax Highlighting ──────────────────────────────
-# Load repo-managed Dusk theme without rebuilding it
-# on every shell startup.
-if [[ ${FAST_THEME_NAME:-default} != dusk-darker ]]; then
-  fast-theme -q dusk-darker
-fi
 
 
 # ── Options ──────────────────────────────────────────────
@@ -279,14 +270,9 @@ if (( $+commands[zoxide] )); then
   export _ZO_DOCTOR=0
 fi
 
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
 fi
-
-if (( $+commands[pyenv] )); then
-  eval "$(pyenv init - zsh)"
-fi
-
 
 # ── OpenCode ─────────────────────────────────────────────
 # Load OpenCode secrets only for the OpenCode process
@@ -304,9 +290,29 @@ function opencode() {
 }
 
 
+# ── Reika ────────────────────────────────────────────────
+# Keep the caller's current directory as Reika's workspace.
+function reika() {
+  (
+    if [[ -f "$HOME/.config/opencode/.env" ]]; then
+      set -a
+      source "$HOME/.config/opencode/.env"
+      set +a
+    fi
+
+    command /Users/cantabile/projects/personal/reika/packages/cli/dist/cli-darwin-arm64/bin/reika "$@"
+  )
+}
+
+
 # ── Bun Completions ──────────────────────────────────────
 [[ -s "$HOME/.bun/_bun" ]] &&
   source "$HOME/.bun/_bun"
+
+
+# ── Fast Syntax Highlighting ──────────────────────────────
+# Load last so it can wrap every ZLE widget defined above.
+source "$HOME/.dotfiles/zsh/fast-syntax-highlighting.zsh"
 
 
 # ── Fastfetch ────────────────────────────────────────────

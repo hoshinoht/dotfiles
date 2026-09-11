@@ -1,0 +1,20 @@
+[tools]
+uv = "0.12.12"
+node = "24.21.0"
+pnpm = "11.17.0"
+bun = "1.4.0"
+go = "1.27.1"
+
+[settings]
+# Read project-owned Node version files without enabling version-file guessing
+# for other runtimes (Go's go.mod remains a module requirement, not a pin).
+idiomatic_version_file_enable_tools = ["node"]
+# Keep read-only diagnostics from implicitly installing missing runtimes.
+task.run_auto_install = false
+
+[env]
+GOTOOLCHAIN = "auto"
+
+[tasks."python:install"]
+description = "Install the default uv-managed Python"
+run = "uv python install 3.14.7 --default"

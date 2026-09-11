@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Check configured runtime pins and global task discovery"
+#MISE dir="{{cwd}}"
+set -Eeuo pipefail
+
+task_file=${MISE_TASK_FILE:-$HOME/.config/mise/tasks/check}
+config_root=${task_file%%/tasks/*}
+exec "$config_root/scripts/runtime.sh" check "$@"

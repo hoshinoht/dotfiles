@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Run the project development command"
+#MISE dir="{{cwd}}"
+set -Eeuo pipefail
+
+task_file=${MISE_TASK_FILE:-$HOME/.config/mise/tasks/project/dev}
+config_root=${task_file%%/tasks/*}
+exec "$config_root/scripts/project.sh" dev "$@"
