@@ -1,7 +1,7 @@
 # ---------------------------------------------------------
 # Appearance & Theme
 # ---------------------------------------------------------
-theme = dusk-high-contrast
+theme = dusk-darker
 background-opacity = 0.80
 background-blur-radius = 10
 # minimum-contrast = 1

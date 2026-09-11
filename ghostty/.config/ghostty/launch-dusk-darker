@@ -2,10 +2,10 @@
 set -e
 
 config_dir="${0:A:h}"
-theme_file="${config_dir}/themes/dusk-high-contrast"
+theme_file="${config_dir}/themes/dusk-darker"
 
 if [[ ! -f "$theme_file" ]]; then
-  print -u2 "dusk-high-contrast theme not found: $theme_file"
+  print -u2 "dusk-darker theme not found: $theme_file"
   exit 1
 fi
 

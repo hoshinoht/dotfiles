@@ -89,8 +89,8 @@ source "$ZSH/oh-my-zsh.sh"
 # ── Fast Syntax Highlighting ──────────────────────────────
 # Load repo-managed Dusk theme without rebuilding it
 # on every shell startup.
-if [[ ${FAST_THEME_NAME:-default} != dusk ]]; then
-  fast-theme -q dusk
+if [[ ${FAST_THEME_NAME:-default} != dusk-darker ]]; then
+  fast-theme -q dusk-darker
 fi
 
 
@@ -101,7 +101,7 @@ unsetopt prompt_sp
 # ── Environment ──────────────────────────────────────────
 export EDITOR="nvim"
 
-export EZA_CONFIG_DIR="$HOME/.config/eza"
+export EZA_CONFIG_DIR="$HOME/.config/eza/themes/dusk-darker"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -203,7 +203,7 @@ zle-line-init() {
   local saved_prompt=$PROMPT
   local saved_rprompt=$RPROMPT
 
-  PROMPT='%(?.%F{#FFB8D1}.%F{#FF8F9A})❯%f '
+  PROMPT='%(?.%F{#697080}.%F{#FF8F9A})❯%f '
   RPROMPT=''
 
   zle .reset-prompt

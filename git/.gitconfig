@@ -79,7 +79,7 @@
   navigate = true
   side-by-side = true
   line-numbers = true
-  syntax-theme = "Dusk"
+  syntax-theme = "Dusk Darker"
   minus-style = "syntax #3A252D"
   minus-emph-style = "syntax #56323B"
   plus-style = "syntax #22352D"

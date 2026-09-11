@@ -3,26 +3,26 @@ $os\
 $directory\
 $git_branch\
 $git_status\
+$python\
+$docker_context\
+$fill\
 $nodejs\
 $bun\
-$python\
 $rust\
 $golang\
-$docker_context\
 $kubernetes\
-$fill\
 $cmd_duration\
 $line_break\
 $character"""
 
 add_newline = false
-continuation_prompt = "[∙](overlay0) "
-palette = "dusk"
+continuation_prompt = "[│](overlay0) "
+palette = "dusk-darker"
 
 [os]
 disabled = false
 style = "fg:crust bg:pink bold"
-format = "[](pink)[$symbol]($style)"
+format = "[╭─ ](pink)[](pink)[$symbol]($style)"
 
 [os.symbols]
 Macos = " "
@@ -49,19 +49,19 @@ style = "fg:sky bg:surface0 bold"
 format = "[](surface0)[ $symbol$branch ]($style)[](surface0) "
 
 [git_status]
-style = "fg:yellow bg:surface1"
-format = "([](surface1)[ $all_status$ahead_behind]($style)[](surface1) )"
-conflicted = "=${count} "
-ahead = "⇡${count} "
-behind = "⇣${count} "
-diverged = "⇕${ahead_count}/${behind_count} "
+style = "fg:yellow bold"
+format = "[$all_status$ahead_behind]($style)"
+conflicted = "[=${count}](red bold) "
+ahead = "[⇡${count}](sky) "
+behind = "[⇣${count}](yellow) "
+diverged = "[⇕${ahead_count}/${behind_count}](mauve bold) "
 up_to_date = ""
-untracked = "?${count} "
-stashed = "≡${count} "
-modified = "!${count} "
-staged = "+${count} "
-renamed = "»${count} "
-deleted = "✘${count} "
+untracked = "[?${count}](overlay2) "
+stashed = "[≡${count}](mauve) "
+modified = "[!${count}](yellow) "
+staged = "[+${count}](green) "
+renamed = "[»${count}](teal) "
+deleted = "[✘${count}](red) "
 
 [nodejs]
 symbol = " "
@@ -76,7 +76,7 @@ format = "[$symbol$version ]($style)"
 [python]
 symbol = " "
 style = "fg:yellow"
-format = "[$symbol$version ]($style)"
+format = "[$symbol$version]($style)([ · ](overlay0)[$virtualenv](mauve)) "
 
 [rust]
 symbol = "󱘗 "
@@ -116,11 +116,40 @@ disabled = true
 disabled = false
 
 [character]
-success_symbol = "[❯](pink)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](mauve)"
+success_symbol = "[╰─](pink)[❯](pink)"
+error_symbol = "[╰─](pink)[❯](red)"
+vimcmd_symbol = "[╰─](pink)[❮](mauve)"
 
 [palettes.dusk]
+rosewater = "#FCE4DE"
+flamingo = "#F2BFB4"
+pink = "#F3BDCA"
+mauve = "#C4A2D4"
+red = "#E27878"
+maroon = "#E09898"
+peach = "#DDA05C"
+yellow = "#DEC47C"
+green = "#82C8A0"
+teal = "#6EC4B8"
+sky = "#75D6F6"
+sapphire = "#5CB8E4"
+blue = "#68ACE0"
+lavender = "#B0BCE8"
+text = "#F3F5FC"
+subtext1 = "#D2D5DE"
+subtext0 = "#B2B6C1"
+overlay2 = "#8F939F"
+overlay1 = "#7E828F"
+overlay0 = "#6E7280"
+surface2 = "#60646E"
+surface1 = "#52565F"
+surface0 = "#454850"
+base = "#393C43"
+mantle = "#2F3238"
+crust = "#26282D"
+
+
+[palettes.dusk-darker]
 rosewater = "#FFD4E2"
 flamingo = "#FFD0DF"
 pink = "#FFB8D1"
