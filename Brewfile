@@ -1,0 +1,32 @@
+# Direct command-line tools used by the dotfiles and daily development workflow.
+# Neovim intentionally uses Homebrew's stable channel.
+brew "neovim"
+brew "stow"
+brew "mise"
+brew "fzf"
+brew "fd"
+brew "ripgrep"
+brew "bat"
+brew "eza"
+brew "zoxide"
+brew "starship"
+brew "tmux"
+brew "yazi"
+brew "btop"
+brew "lazygit"
+brew "lazydocker"
+brew "gh"
+brew "git"
+brew "git-delta"
+brew "git-lfs"
+brew "fastfetch"
+
+# AeroSpace is distributed from its own tap. Trust only the cask we use.
+tap "nikitabobko/tap", trusted: { cask: "aerospace" }
+cask "nikitabobko/tap/aerospace"
+cask "ghostty"
+cask "orbstack"
+cask "raycast"
+cask "zed"
+cask "font-blex-mono-nerd-font"
+cask "font-jetbrains-mono-nerd-font"

@@ -8,18 +8,133 @@ contrast and deepens the surfaces for daily use.
 
 ## Setup
 
+Homebrew must already be installed on macOS. From a checkout at
+`~/.dotfiles`, run the canonical, idempotent entry point:
+
 ```bash
-brew install stow starship bat zoxide fd git-delta fastfetch
-cd ~/.dotfiles && stow zsh git starship bat eza tmux ghostty fastfetch btop lazygit lazydocker fsh
+cd ~/.dotfiles
+./bootstrap.sh
 ```
+
+`bootstrap.sh` installs the tracked [Brewfile](Brewfile) with no upgrades or
+cleanup, initializes Oh My Zsh plugins and TPM when they are absent, links
+the 17 Stow packages with `--no-folding`, installs the configured mise tools
+and default Python, builds the bat cache, and may install tmux plugins. It
+does not change the login shell (`chsh`) or remove packages. Set
+`INSTALL_TMUX_PLUGINS=0` to skip optional TPM plugin installation.
+
+Use either read-only mode to inspect a machine before changing it:
+
+```bash
+./bootstrap.sh --check
+./bootstrap.sh --dry-run
+```
+
+Both modes check the Brewfile and simulate Stow without cloning, linking,
+installing, or changing package state. After setup, these diagnostics are
+available from the globally Stowed mise tasks:
+
+```bash
+mise run doctor
+mise run check
+```
+
+## Homebrew inventory
+
+`Brewfile` declares direct dependencies only. Formulae are `neovim` (the
+stable Homebrew formula), `stow`, `mise`, `fzf`, `fd`, `ripgrep`, `bat`, `eza`,
+`zoxide`, `starship`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
+`git`, `git-delta`, `git-lfs`, and `fastfetch`. Casks are AeroSpace (from its
+trusted tap), Ghostty, OrbStack, Raycast, Zed, Blex Mono Nerd Font, and
+JetBrains Mono Nerd Font. Oh My Zsh, fzf-tab, zsh-autosuggestions,
+fast-syntax-highlighting, and TPM are initialized by `bootstrap.sh` rather
+than declared as Homebrew packages.
+
+## Stow packages
+
+The bootstrap links these packages into `$HOME` with `--no-folding`:
+
+| Package | What it manages |
+|---|---|
+| `zsh` | `.zshrc`, Oh My Zsh integration, aliases, fzf, and the transient prompt |
+| `git` | `.gitconfig`, Delta, GitHub CLI browsing, and worktree aliases |
+| `mise` | Runtime pins, environment activation, and global/project tasks |
+| `nvim` | LazyVim-based Neovim configuration and local Dusk themes |
+| `zed` | Durable Zed settings, keymap, and local Dusk themes |
+| `starship` | Rail prompt with selectable Dusk palettes |
+| `bat` | Syntax highlighting with Dusk and Dusk Darker themes |
+| `eza` | File-listing colors through the selected Dusk theme directory |
+| `tmux` | Prefix, pane/TUI bindings, statusline, and selectable themes |
+| `ghostty` | Terminal settings, themes, and the Darker launcher |
+| `fastfetch` | System information display |
+| `btop` | System monitor with Dusk themes |
+| `lazygit` | Git TUI colors |
+| `lazydocker` | Container TUI colors |
+| `fsh` | fast-syntax-highlighting themes for both Dusk variants |
+| `yazi` | File manager flavor and syntax theme |
+| `aerospace` | AeroSpace tiling window-manager configuration |
+
+## Runtime ownership
+
+[`mise/.config/mise/config.toml`](mise/.config/mise/config.toml) owns the
+global development tools and keeps their versions explicit:
+
+| Tool | Owner and version |
+|---|---|
+| Node | mise `24.21.0` |
+| pnpm | mise `11.17.0` |
+| Bun | mise `1.4.0` |
+| Go | mise `1.27.1`, with `GOTOOLCHAIN=auto` |
+| uv | mise `0.12.12` |
+| Python | uv, installed by `mise run python:install` as `3.14.7` |
+| Rust | rustup (unchanged) |
+
+mise activation is loaded by `.zshrc`. Node project version files are read
+conservatively; Go module requirements remain module requirements rather than
+global pins. A Homebrew Node may remain as another package's dependency, but it
+does not own the active PATH.
+
+direnv is intentionally absent: the final scan found no user `.envrc` files,
+so the old hook and formula were removed. Use mise environment features for
+project-specific environment settings instead.
+
+## mise tasks and project detection
+
+Global tasks are defined under
+[`mise/.config/mise/tasks`](mise/.config/mise/tasks):
+
+| Task | Purpose |
+|---|---|
+| `mise run bootstrap` | Install configured mise tools and default Python |
+| `mise run doctor` | Run mise diagnostics and show global tools without installing them |
+| `mise run check` | Validate pins, settings, and discoverable global tasks |
+| `mise run python:install` | Install uv-managed Python `3.14.7` as the default |
+| `mise run project:setup` | Install or verify project dependencies from its first supported lockfile |
+| `mise run project:dev` | Run the project development command |
+| `mise run project:test` | Run the project test command |
+| `mise run project:check` | Validate project metadata without changing lockfiles |
+| `mise run project:build` | Run the project build command |
+
+Project helpers search from the current directory upward in this order:
+`uv.lock`, `pnpm-lock.yaml`, `bun.lock`/`bun.lockb`, `package-lock.json`, then
+`go.mod`. Detection is read-only and never rewrites lockfiles. Setup uses
+locked/frozen installs (or Go module verification); `project:dev` for a uv
+project takes an explicit command, for example
+`mise run project:dev -- python app.py`.
+
+## Editors and themes
+
+Neovim is the Homebrew stable formula with a LazyVim-based configuration.
+Zed's durable settings and keymap are managed separately from its prompt
+database and other runtime state, which remain intentionally unmanaged. Both
+editors include local **Dusk** and **Dusk Darker** themes, with **Dusk Darker**
+as the default and Space as the leader in Neovim and Zed.
 
 ### Active theme: Dusk Darker
 
-that quits after its last window closes, run:
 `dusk-darker` is selected by default throughout the terminal stack. The
 original `dusk` definitions remain available alongside it. Ghostty can open a
 separate Darker instance that quits after its last window closes:
-that quits after its last window closes, run:
 
 ```bash
 ~/.config/ghostty/launch-dusk-darker
@@ -48,22 +163,67 @@ After changing bat themes, run `bat cache --build`. Start a new shell after
 changing Starship, eza, or fast-syntax-highlighting; reload tmux with
 `prefix+r` after changing its statusline selector.
 
-## Packages
+## Key ownership
 
-| Package | What it manages |
+Bindings are deliberately assigned by layer rather than duplicated:
+
+| Layer | Ownership and notable bindings |
 |---|---|
-| `zsh` | `.zshrc` — oh-my-zsh, fzf, aliases, transient prompt |
-| `starship` | Rail prompt with selectable Dusk palettes |
-| `bat` | Syntax highlighting with Dusk and Dusk Darker themes |
-| `git` | `.gitconfig` with delta side-by-side diffs |
-| `eza` | File listing colors (Dusk palette) |
-| `tmux` | Statusline, keybinds, and selectable Dusk statusline themes |
-| `ghostty` | Terminal config plus Dusk and Dusk Darker color schemes |
-| `btop` | System monitor with Dusk and Dusk Darker themes |
-| `lazygit` | Git TUI with Dusk border/selection colors |
-| `lazydocker` | Docker TUI with Dusk border/selection colors |
-| `fsh` | fast-syntax-highlighting themes for both Dusk variants |
-| `fastfetch` | System info display |
+| AeroSpace | `Alt` focuses with `h/j/k/l`, moves with `Alt-Shift-h/j/k/l`, and selects workspaces with `Alt-1` through `Alt-9` |
+| tmux | `Ctrl-Space` is the prefix; pressing it twice sends a literal prefix to the pane. `prefix+r` reloads; `prefix+g/d/b/y` opens lazygit/lazydocker/btop/yazi popups |
+| fzf | Native shell integration keeps `Ctrl-T` for file selection |
+| Neovim / Zed | Space is the leader; Zed's managed normal-mode shortcuts include `Space-f`, `Space-s`, `Space-p`, `Space-d`, and `Space-g` |
+| TUIs | Native TUI keybindings remain available inside lazygit, lazydocker, btop, and yazi |
+| Ghostty | `Cmd-D` opens a right-hand split |
+
+## Git and worktrees
+
+Git keeps the useful Delta side-by-side pager, lazygit, and `nvimdiff`
+mergetool/difftool integration. The safer interactive staging alias is
+`git a` (`add --interactive`), and `git open` delegates repository browsing
+to `gh browse`. The default initial branch is `main`.
+
+The native worktree aliases are intentionally small and inspectable:
+
+| Command | Effect |
+|---|---|
+| `git wtl` | `git worktree list` |
+| `git wtp` | `git worktree prune --dry-run` |
+
+`git wtp` is a dry run; it does not prune anything.
+
+## Containers
+
+OrbStack remains the container engine and supplies the Docker CLI/daemon. The
+active Docker context is `orbstack`; the `lazydocker` TUI and Docker shell
+plugins use it. Homebrew `buildx` may still be present as a dependency/tool,
+but it is not the engine. Apple container is intentionally not adopted.
+
+## Migration backup and rollback
+
+The completed migration retained these external backups:
+
+- Editor configuration: `~/Library/Application Support/dotfiles-backups/editor-configs-20260911`
+- Legacy Python virtual environments: `~/Library/Application Support/dotfiles-backups/python-venvs-20260911`
+
+Editor files were backed up before selective Stow adoption. Legacy venvs were
+archived with manifests and checksums; environments with usable requirements
+were rebuilt with uv. Python.org 3.13 was removed only after references were
+cleared.
+
+To roll back a managed config, remove the relevant Stow links (or run Stow's
+package-specific uninstall) and restore the corresponding editor files from
+the backup directory. Leave Zed prompt/runtime state untouched. Archived venvs
+are recovery material, not guaranteed-portable environments: use their
+retained manifests and archives to rebuild with a compatible interpreter.
+
+## Intentional exclusions
+
+- No Homebrew-owned Node, pnpm, Bun, Go, or uv installation is required; mise owns the configured versions. A transitive Homebrew Node is harmless but does not own PATH.
+- No direnv, Apple container, package cleanup, or `chsh` is performed.
+- Rust remains owned by rustup.
+- Application repositories, Zed prompt/runtime databases, and unknown user data are outside this repository's management.
+- The machine-local `reika` wrapper in `.zshrc` is retained as a pre-existing user customization; bootstrap does not install its target binary.
 
 ## Dusk Palette
 
