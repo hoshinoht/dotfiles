@@ -3,6 +3,8 @@
 # ── Path ─────────────────────────────────────────────────
 # Keep these session-local rather than writing universal Fish variables.
 fish_add_path --global --move \
+    /opt/homebrew/bin \
+    /opt/homebrew/sbin \
     "$HOME/.local/bin" \
     "$HOME/.cargo/bin" \
     "$HOME/.opencode/bin" \
@@ -20,6 +22,12 @@ set -gx _ZO_DOCTOR 0
 
 if not status is-interactive
     return
+end
+
+set -g fish_greeting
+
+if type -q fastfetch
+    fastfetch
 end
 
 

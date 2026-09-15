@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "id": "macos-dotfiles-modernization",
+  "kind": "software-engineering",
+  "title": "Modernize macOS development environment",
+  "goal": "Deliver a reproducible, themed macOS development environment with mise-owned runtimes, managed editors, safer Git worktrees, coherent keybindings, and verified bootstrap documentation.",
+  "scope": [
+    "Consolidate Node, pnpm, Bun, Go, uv, and Python under documented owners",
+    "Remove unused direnv and archive or rebuild legacy Python environments safely",
+    "Manage Neovim and Zed configuration with Dusk themes",
+    "Modernize Git worktree helpers and resolve terminal keybinding collisions",
+    "Add a curated Brewfile, bootstrap/check tasks, and complete documentation"
+  ],
+  "nonGoals": [
+    "Changing OrbStack or adopting Apple container",
+    "Changing Rust away from rustup",
+    "Editing application source repositories",
+    "Deleting unknown user data or publishing changes"
+  ],
+  "constraints": [
+    "Preserve existing uncommitted README, Zsh, mise, and FSH work",
+    "Back up unmanaged editor configuration before Stow adoption",
+    "Use reversible migration gates before runtime or environment removal",
+    "Keep application runtime databases outside Stow"
+  ],
+  "relevantFiles": [
+    "README.md",
+    "Brewfile",
+    "zsh/.zshrc",
+    "zsh/fast-syntax-highlighting.zsh",
+    "mise/.config/mise/config.toml",
+    "git/.gitconfig",
+    "tmux/.config/tmux/tmux.conf",
+    "nvim/.config/nvim/init.lua",
+    "zed/.config/zed/settings.json"
+  ],
+  "planFile": ".opencode/workplan/macos-dotfiles-modernization.md",
+  "specFiles": [],
+  "phases": [
+    {
+      "id": "safeguards",
+      "title": "Safeguards and baseline",
+      "status": "completed",
+      "steps": [{
+        "id": "capture",
+        "title": "Capture reversible baseline",
+        "target": "existing working tree and live editor configs",
+        "action": "Back up protected uncommitted files and live editor configs, then record runtime and repository baseline evidence.",
+        "validation": "Backups exist outside the repository and checksum comparison succeeds.",
+        "status": "completed"
+      }]
+    },
+    {
+      "id": "runtime",
+      "title": "Runtime consolidation",
+      "status": "completed",
+      "steps": [
+        {
+          "id": "configure",
+          "title": "Configure mise runtimes and tasks",
+          "target": "mise/.config/mise/**",
+          "action": "Pin supported Node LTS, pnpm, Bun, Go, uv, Python installer, and standard project task helpers.",
+          "validation": "mise install and fresh-shell origin/version checks pass; task listing is complete.",
+          "status": "completed"
+        },
+        {
+          "id": "cutover",
+          "title": "Cut over machine runtime ownership",
+          "target": "Homebrew and mise machine state",
+          "action": "Switch Node, pnpm, Bun, and Go command ownership to mise, preserve project constraints, and remove superseded Homebrew/global installations only after probes pass.",
+          "validation": "Fresh shell resolves each runtime through mise and representative project metadata remains unchanged.",
+          "status": "completed"
+        },
+        {
+          "id": "direnv",
+          "title": "Remove unused direnv",
+          "target": "zsh/.zshrc and Homebrew machine state",
+          "action": "Confirm no user project .envrc, remove the shell hook and formula, and validate mise activation.",
+          "validation": "direnv is absent, no hook is loaded, and Zsh/mise checks pass.",
+          "status": "completed"
+        },
+        {
+          "id": "legacy-python",
+          "title": "Archive legacy Python environments",
+          "target": "legacy project virtual environments and Python.org 3.13",
+          "action": "Archive legacy venvs with manifests and checksums; rebuild reproducible environments where requirements exist; retain or remove base interpreters only when references are cleared.",
+          "validation": "Archive restore test passes, active rebuilt environments import successfully, and no remaining venv references a removed interpreter.",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "editors",
+      "title": "Managed editors and themes",
+      "status": "completed",
+      "steps": [
+        {
+          "id": "neovim",
+          "title": "Adopt managed Neovim config",
+          "target": "nvim/.config/nvim/**",
+          "action": "Preserve the current LazyVim setup, add Dusk themes and consistent Space-leader behavior, and adopt through selective Stow.",
+          "validation": "Neovim headless startup succeeds and live managed files are repository symlinks.",
+          "status": "completed"
+        },
+        {
+          "id": "zed",
+          "title": "Adopt managed Zed config",
+          "target": "zed/.config/zed/settings.json, keymap.json, themes/**",
+          "action": "Preserve durable settings, remove ephemeral state, enable Vim mode, add Dusk themes and consistent Space-leader bindings without touching prompt databases.",
+          "validation": "JSON-with-comments files parse after normalization; managed files are symlinks and prompt database checksums are unchanged.",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "workflow",
+      "title": "Git and keybinding workflow",
+      "status": "completed",
+      "steps": [{
+        "id": "git-keys",
+        "title": "Modernize Git and resolve keybindings",
+        "target": "git/.gitconfig and tmux/.config/tmux/**",
+        "action": "Replace obsolete or unsafe aliases, add safe worktree helpers, set main as default branch, and move the tmux prefix to Ctrl-Space while retaining fzf Ctrl-T and AeroSpace Alt.",
+        "validation": "Git config parses, temporary worktree lifecycle passes, and isolated tmux configuration reports the expected prefix and bindings.",
+        "status": "completed"
+      }]
+    },
+    {
+      "id": "reproducibility",
+      "title": "Reproducibility and documentation",
+      "status": "completed",
+      "steps": [
+        {
+          "id": "brew-bootstrap",
+          "title": "Add curated Brewfile and bootstrap",
+          "target": "Brewfile and mise bootstrap/check helpers",
+          "action": "Declare direct dotfile prerequisites and applications while excluding mise-owned runtimes and unsafe cleanup behavior.",
+          "validation": "brew bundle check passes on the current Mac and bootstrap dry-run/check paths are idempotent.",
+          "status": "completed"
+        },
+        {
+          "id": "docs",
+          "title": "Complete setup documentation",
+          "target": "README.md",
+          "action": "Document ownership, setup, tasks, themes, keybindings, worktrees, migration, and rollback; repair malformed duplicate text.",
+          "validation": "README commands match tracked files and validated behavior.",
+          "status": "completed"
+        },
+        {
+          "id": "final-validation",
+          "title": "Validate and review integrated result",
+          "target": "whole change set",
+          "action": "Run focused static, shell, mise, editor, Git, tmux, Stow, and Brewfile checks and obtain independent code review.",
+          "validation": "All in-scope checks pass and no blocker, critical, or major review findings remain open.",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "reviewFindings": [
+    {
+      "severity": "major",
+      "title": "Reviewer requested restoring pyenv initialization",
+      "detail": "Resolved as not applicable: pyenv removal was an explicitly authorized, already-completed migration and part of the protected pre-existing Zsh diff; uv now owns Python and existing constrained projects were rebuilt or validated.",
+      "source": "code-checker/ses_f708a54aaffe496OLU6hzFcWxa",
+      "status": "resolved"
+    },
+    {
+      "severity": "minor",
+      "title": "TPM skip wording overstated behavior",
+      "detail": "README now says INSTALL_TMUX_PLUGINS=0 skips TPM plugin installation; TPM checkout initialization remains part of bootstrap.",
+      "source": "code-checker/ses_f708a54aaffe496OLU6hzFcWxa",
+      "status": "resolved"
+    },
+    {
+      "severity": "minor",
+      "title": "Markdown workplan receipts were stale",
+      "detail": "Execution receipts and resume point were updated before re-review.",
+      "source": "code-checker/ses_f708a54aaffe496OLU6hzFcWxa",
+      "status": "resolved"
+    },
+    {
+      "severity": "minor",
+      "title": "Machine-local Reika wrapper is non-portable",
+      "detail": "Resolved by documenting the protected pre-existing wrapper as an intentionally local customization whose target binary is not installed by bootstrap.",
+      "source": "code-checker/ses_f708a54aaffe496OLU6hzFcWxa re-review",
+      "status": "resolved"
+    }
+  ],
+  "notes": [
+    "Implementation was explicitly authorized in the initiating request.",
+    "Planner review corrected unsafe interpreter deletion, editor adoption, and untracked-file backup assumptions.",
+    "Safeguards/capture completed: verified backup at /private/var/folders/h1/k8x791y54cl2t80qq8_pvz5m0000gn/T/opencode/macos-dotfiles-modernization-backup.",
+    "Runtime/configure completed by code-writer/ses_f70bf1671ffezBrbfQ9MLr7tC7; runtime cutover, direnv removal, and legacy Python cleanup accepted by parent.",
+    "Editors/neovim completed by code-writer/ses_f70bf1669ffen6M13SuW8KYhRs and editors/zed by code-writer/ses_f70bf1668ffeyPFHKoKYP5aDtR; selectively adopted with Stow after durable backup.",
+    "Workflow/git-keys completed by code-writer/ses_f70bf13d2ffe01wtDk4p8oFPxv.",
+    "Legacy Python archives at ~/Library/Application Support/dotfiles-backups/python-venvs-20260911; seven archives verified, requirements-backed environments rebuilt, Python.org 3.13 removed after references cleared.",
+    "Reproducibility/brew-bootstrap completed by code-writer/ses_f70ab0b77ffecgsnjAQZq583pN and accepted after removing conflicting Homebrew Docker CLI ownership; Brewfile check passes.",
+    "Reproducibility/docs completed by code-writer/ses_f70948015ffeNck8cQh7gnRyxm and accepted after correcting Stow link terminology.",
+    "Tester ses_f708a54d6ffexS6Z4h4QLQyaH4 was permission-blocked before executing shell checks; parent reran the specified validation groups directly.",
+    "Code-checker ses_f708a54aaffe496OLU6hzFcWxa reported one major and two minor findings; the pyenv finding was reconciled against the explicit prior migration decision, and both documentation findings were corrected.",
+    "Code-checker re-review passed with no blocker, critical, or major findings. Its remaining minor Reika portability note was resolved by documenting the protected machine-local customization.",
+    "Final validation completed by the parent: all focused static, runtime, Brew/bootstrap, editor, Git/tmux, container, Python archive, and workplan checks passed."
+  ],
+  "status": "completed",
+  "createdAt": "2026-09-11T06:35:00.000Z",
+  "updatedAt": "2026-09-11T08:01:16.000Z"
+}

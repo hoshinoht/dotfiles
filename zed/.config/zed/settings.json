@@ -53,7 +53,12 @@
     "trust_all_worktrees": true
   },
   "terminal": {
-    "font_family": "JetBrainsMono Nerd Font"
+    "font_family": "Maple Mono NF",
+    "font_features": {
+      "calt": false,
+      "liga": false,
+      "dlig": false
+    }
   },
   "git": {
     "disable_git": false,
@@ -75,7 +80,12 @@
     "show": "never"
   },
   "cursor_blink": false,
-  "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+  "buffer_font_family": "Maple Mono NF",
+  "buffer_font_features": {
+    "calt": false,
+    "liga": false,
+    "dlig": false
+  },
   "auto_indent_on_paste": true,
   "show_whitespaces": "none",
   "tab_size": 2,
