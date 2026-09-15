@@ -15,7 +15,8 @@
   conditional modules into one rail rather than detached pills, and derive any
   leading fade from the terminal canvas toward the destination role color so
   its final step matches that segment exactly.
-- Keep terminal experiments isolated: Fish may use a dedicated Starship config
-  and launcher, while Ghostty's active theme and the Zsh prompt remain unchanged
-  unless the user explicitly requests a global switch.
+- Keep shell wiring isolated, but keep shared prompt visuals in the single
+  Stow-managed Starship config so Zsh and Fish cannot drift. Ghostty launches
+  Fish by default with automatic integration detection; changing the macOS
+  account login shell remains a separate, explicit system action.
 <!-- recall:lessons:end -->

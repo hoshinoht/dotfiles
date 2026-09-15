@@ -1,19 +1,6 @@
+# Shared compact prompt for Zsh and Fish.
 format = """
-$os\
-$directory\
-$git_branch\
-$git_status\
-$python\
-$docker_context\
-$fill\
-$nodejs\
-$bun\
-$rust\
-$golang\
-$kubernetes\
-$cmd_duration\
-$line_break\
-$character"""
+$os$directory${custom.rail_start}${custom.directory_end}$git_branch$git_status$python$nodejs$bun$rust$golang$docker_context$kubernetes$cmd_duration${custom.rail_end}$line_break$character"""
 
 add_newline = false
 continuation_prompt = "[│](overlay0) "
@@ -22,7 +9,7 @@ palette = "dusk-darker"
 [os]
 disabled = false
 style = "fg:crust bg:pink bold"
-format = "[╭─ ](pink)[](pink)[$symbol]($style)"
+format = "[ ](bg:fade1)[ ](bg:fade2)[ ](bg:fade3)[$symbol]($style)"
 
 [os.symbols]
 Macos = " "
@@ -31,99 +18,119 @@ Windows = " "
 
 [directory]
 style = "fg:crust bg:pink bold"
-format = "[ $path ]($style)[](pink) "
-truncation_length = 4
+format = "[ $path ]($style)"
+truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
-"projects" = "󰲋 "
+"Documents" = "󰈙"
+"Downloads" = "󰉍"
+"Music" = "󰝚"
+"Pictures" = "󰉏"
+"Developer" = "󰲋"
+"projects" = "󰲋"
 
 [git_branch]
 symbol = " "
 style = "fg:sky bg:surface0 bold"
-format = "[](surface0)[ $symbol$branch ]($style)[](surface0) "
+format = "[ $symbol$branch ]($style)"
 
 [git_status]
-style = "fg:yellow bold"
+# Symbols, not colour alone, distinguish every working-tree state.
+style = "fg:yellow bg:surface0 bold"
 format = "[$all_status$ahead_behind]($style)"
-conflicted = "[=${count}](red bold) "
-ahead = "[⇡${count}](sky) "
-behind = "[⇣${count}](yellow) "
-diverged = "[⇕${ahead_count}/${behind_count}](mauve bold) "
+conflicted = "[=${count}](fg:red bg:surface0 bold) "
+ahead = "[⇡${count}](fg:sky bg:surface0) "
+behind = "[⇣${count}](fg:yellow bg:surface0) "
+diverged = "[⇕${ahead_count}/${behind_count}](fg:mauve bg:surface0 bold) "
 up_to_date = ""
-untracked = "[?${count}](overlay2) "
-stashed = "[≡${count}](mauve) "
-modified = "[!${count}](yellow) "
-staged = "[+${count}](green) "
-renamed = "[»${count}](teal) "
-deleted = "[✘${count}](red) "
-
-[nodejs]
-symbol = " "
-style = "fg:green"
-format = "[$symbol$version ]($style)"
-
-[bun]
-symbol = " "
-style = "fg:peach"
-format = "[$symbol$version ]($style)"
+untracked = "[?${count}](fg:overlay2 bg:surface0) "
+stashed = "[≡${count}](fg:mauve bg:surface0) "
+modified = "[!${count}](fg:yellow bg:surface0) "
+staged = "[+${count}](fg:green bg:surface0) "
+renamed = "[»${count}](fg:teal bg:surface0) "
+deleted = "[✘${count}](fg:red bg:surface0) "
 
 [python]
-symbol = " "
-style = "fg:yellow"
-format = "[$symbol$version]($style)([ · ](overlay0)[$virtualenv](mauve)) "
+symbol = ""
+style = "fg:yellow bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:yellow bold)[ $version( · $virtualenv) ]($style)"
+
+[nodejs]
+symbol = ""
+style = "fg:green bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:green bold)[ $version ]($style)"
+
+[bun]
+symbol = ""
+style = "fg:peach bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:peach bold)[ $version ]($style)"
 
 [rust]
-symbol = "󱘗 "
-style = "fg:peach"
-format = "[$symbol$version ]($style)"
+symbol = "󱘗"
+style = "fg:peach bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:peach bold)[ $version ]($style)"
 
 [golang]
-symbol = " "
-style = "fg:blue"
-format = "[$symbol$version ]($style)"
+symbol = ""
+style = "fg:blue bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:blue bold)[ $version ]($style)"
 
 [docker_context]
-symbol = " "
-style = "fg:sapphire"
-format = "[$symbol$context ]($style)"
+symbol = ""
+style = "fg:sapphire bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:sapphire bold)[ $context ]($style)"
 
 [kubernetes]
 disabled = false
-symbol = "󱃾 "
-style = "fg:lavender"
-format = "[$symbol$context ]($style)"
+symbol = "󱃾"
+style = "fg:lavender bg:surface0 bold"
+format = "[ $symbol ](fg:crust bg:lavender bold)[ $context ]($style)"
 detect_files = ["Chart.yaml", "helmfile.yaml", "kustomization.yaml", "skaffold.yaml"]
 detect_folders = ["charts", "k8s", "kubernetes"]
 
-[fill]
-symbol = " "
-
 [cmd_duration]
 min_time = 2_000
-style = "fg:overlay1"
-format = "[$duration ]($style)"
+style = "fg:overlay1 bg:surface0"
+format = "[ $duration ]($style)"
 
-[time]
-disabled = true
+# Give the directory cap a rail background only when a context module follows it.
+[custom.rail_start]
+command = "printf rail"
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1 || test -n \"$DOCKER_CONTEXT\" || test -e pyproject.toml || test -e package.json || test -e bun.lock || test -e bun.lockb || test -e bunfig.toml || test -e Cargo.toml || test -e go.mod || test -e Dockerfile || test -e compose.yaml || test -e docker-compose.yml || test -e Chart.yaml || test -e helmfile.yaml || test -e kustomization.yaml || test -e skaffold.yaml || test -d charts || test -d k8s || test -d kubernetes"
+shell = ["sh"]
+format = "[](fg:pink bg:surface0)"
+
+[custom.directory_end]
+command = "printf end"
+when = "! (git rev-parse --is-inside-work-tree >/dev/null 2>&1 || test -n \"$DOCKER_CONTEXT\" || test -e pyproject.toml || test -e package.json || test -e bun.lock || test -e bun.lockb || test -e bunfig.toml || test -e Cargo.toml || test -e go.mod || test -e Dockerfile || test -e compose.yaml || test -e docker-compose.yml || test -e Chart.yaml || test -e helmfile.yaml || test -e kustomization.yaml || test -e skaffold.yaml || test -d charts || test -d k8s || test -d kubernetes)"
+shell = ["sh"]
+format = "[](fg:pink)"
+
+[custom.rail_end]
+command = "printf rail"
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1 || test -n \"$DOCKER_CONTEXT\" || test -e pyproject.toml || test -e package.json || test -e bun.lock || test -e bun.lockb || test -e bunfig.toml || test -e Cargo.toml || test -e go.mod || test -e Dockerfile || test -e compose.yaml || test -e docker-compose.yml || test -e Chart.yaml || test -e helmfile.yaml || test -e kustomization.yaml || test -e skaffold.yaml || test -d charts || test -d k8s || test -d kubernetes"
+shell = ["sh"]
+format = "[ ](bg:surface0)[](fg:surface0)"
 
 [line_break]
 disabled = false
 
 [character]
-success_symbol = "[╰─](pink)[❯](pink)"
-error_symbol = "[╰─](pink)[❯](red)"
-vimcmd_symbol = "[╰─](pink)[❮](mauve)"
+success_symbol = "[󰄛 ❯](pink bold)"
+error_symbol = "[󰄛 ](pink bold)[✘](red bold)"
+vimcmd_symbol = "[󰄛 ❮](mauve bold)"
+vimcmd_replace_one_symbol = "[󰄛 ◆](yellow bold)"
+vimcmd_replace_symbol = "[󰄛 ◆](yellow bold)"
+vimcmd_visual_symbol = "[󰄛 ◆](yellow bold)"
 
 [palettes.dusk]
 rosewater = "#FCE4DE"
 flamingo = "#F2BFB4"
 pink = "#F3BDCA"
+fade1 = "#594D54"
+fade2 = "#8C727C"
+fade3 = "#F3BDCA"
 mauve = "#C4A2D4"
 red = "#E27878"
 maroon = "#E09898"
@@ -148,11 +155,13 @@ base = "#393C43"
 mantle = "#2F3238"
 crust = "#26282D"
 
-
 [palettes.dusk-darker]
 rosewater = "#FFD4E2"
 flamingo = "#FFD0DF"
 pink = "#FFB8D1"
+fade1 = "#51424E"
+fade2 = "#8B697A"
+fade3 = "#FFB8D1"
 mauve = "#C4A2D4"
 red = "#FF8F9A"
 maroon = "#FFA3AC"

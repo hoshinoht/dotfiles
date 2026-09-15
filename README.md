@@ -58,12 +58,12 @@ The bootstrap links these packages into `$HOME` with `--no-folding`:
 | Package | What it manages |
 |---|---|
 | `zsh` | `.zshrc`, Oh My Zsh integration, aliases, fzf, and the transient prompt |
-| `fish` | Opt-in Fish pilot, native Dusk colors, tool integration, and compact Starship ribbon |
+| `fish` | Opt-in Fish shell, native Dusk colors, and tool integration |
 | `git` | `.gitconfig`, Delta, GitHub CLI browsing, and worktree aliases |
 | `mise` | Runtime pins, environment activation, and global/project tasks |
 | `nvim` | LazyVim-based Neovim configuration and local Dusk themes |
 | `zed` | Durable Zed settings, keymap, and local Dusk themes |
-| `starship` | Rail prompt with selectable Dusk palettes |
+| `starship` | Shared Zsh/Fish rail prompt with selectable Dusk palettes |
 | `bat` | Syntax highlighting with Dusk and Dusk Darker themes |
 | `eza` | File-listing colors through the selected Dusk theme directory |
 | `tmux` | Prefix, pane/TUI bindings, statusline, and selectable themes |
@@ -142,18 +142,19 @@ separate Darker instance that quits after its last window closes:
 ~/.config/ghostty/launch-dusk-darker
 ```
 
-The Fish pilot uses a separate Starship configuration and Ghostty launcher, so
-the Zsh prompt and login shell remain unchanged:
+Zsh and Fish use the same Starship rail and palette. Ghostty launches Fish by
+default with automatic shell-integration detection. The macOS account shell may
+remain Zsh until `chsh -s /opt/homebrew/bin/fish` is completed interactively.
+An explicit separate Fish instance remains available through:
 
 ```bash
 ~/.config/ghostty/launch-fish-pilot
 ```
 
-The launcher overrides Ghostty's command and shell integration and exits its
-separate app instance with the last window. It keeps the active Ghostty theme,
-opacity, blur, padding, and font settings. Font
-alternatives are installed and left as commented complete blocks in
-`~/.config/ghostty/config`; activate one block at a time, then reload the
+The launcher exits its separate app instance with the last window. It keeps the
+active Ghostty theme, opacity, blur, padding, and typography. Monaspace Neon NF
+is the active font; the other installed alternatives are commented as complete
+blocks in `~/.config/ghostty/config`. Activate one block at a time, then reload the
 configuration or open a new window.
 
 Named variants are selected in each tool's normal configuration: Starship's

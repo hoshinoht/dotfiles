@@ -150,9 +150,6 @@ if type -q mise
     mise activate fish | source
 end
 
-# Keep the screenshot-inspired ribbon isolated to the Fish pilot.
-set -gx STARSHIP_CONFIG "$HOME/.config/starship-fish.toml"
-
 function starship_transient_prompt_func
     starship module character
 end
