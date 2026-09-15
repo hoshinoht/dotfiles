@@ -1,0 +1,32 @@
+#!/bin/zsh
+set -e
+
+fish_bin="$(command -v fish 2>/dev/null || true)"
+fish_config="$HOME/.config/fish/config.fish"
+
+if [[ -z "$fish_bin" ]]; then
+  for candidate in /opt/homebrew/bin/fish /usr/local/bin/fish; do
+    if [[ -x "$candidate" ]]; then
+      fish_bin="$candidate"
+      break
+    fi
+  done
+fi
+
+if [[ -z "$fish_bin" || ! -x "$fish_bin" ]]; then
+  print -u2 "Fish is not installed or not discoverable"
+  exit 1
+fi
+
+if [[ ! -f "$fish_config" ]]; then
+  print -u2 "Fish pilot is not linked: $fish_config"
+  print -u2 "Run: stow --no-folding --target=\"$HOME\" fish"
+  exit 1
+fi
+
+# Uses the normal Ghostty config (including its active Dusk theme), while
+# overriding only the shell and its integration for this separate instance.
+exec open -na Ghostty.app --args \
+  "--command=direct:$fish_bin" \
+  --shell-integration=fish \
+  --quit-after-last-window-closed=true

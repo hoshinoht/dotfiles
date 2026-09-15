@@ -18,7 +18,7 @@ cd ~/.dotfiles
 
 `bootstrap.sh` installs the tracked [Brewfile](Brewfile) with no upgrades or
 cleanup, initializes Oh My Zsh plugins and TPM when they are absent, links
-the 17 Stow packages with `--no-folding`, installs the configured mise tools
+the 18 Stow packages with `--no-folding`, installs the configured mise tools
 and default Python, builds the bat cache, and may install tmux plugins. It
 does not change the login shell (`chsh`) or remove packages. Set
 `INSTALL_TMUX_PLUGINS=0` to skip optional TPM plugin installation.
@@ -43,10 +43,11 @@ mise run check
 
 `Brewfile` declares direct dependencies only. Formulae are `neovim` (the
 stable Homebrew formula), `stow`, `mise`, `fzf`, `fd`, `ripgrep`, `bat`, `eza`,
-`zoxide`, `starship`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
+`zoxide`, `starship`, `fish`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
 `git`, `git-delta`, `git-lfs`, and `fastfetch`. Casks are AeroSpace (from its
 trusted tap), Ghostty, OrbStack, Raycast, Zed, Blex Mono Nerd Font, and
-JetBrains Mono Nerd Font. Oh My Zsh, fzf-tab, zsh-autosuggestions,
+the JetBrains Mono, Maple Mono, Fira Code, Monaspace, Commit Mono, and Iosevka
+font alternatives. Oh My Zsh, fzf-tab, zsh-autosuggestions,
 fast-syntax-highlighting, and TPM are initialized by `bootstrap.sh` rather
 than declared as Homebrew packages.
 
@@ -57,6 +58,7 @@ The bootstrap links these packages into `$HOME` with `--no-folding`:
 | Package | What it manages |
 |---|---|
 | `zsh` | `.zshrc`, Oh My Zsh integration, aliases, fzf, and the transient prompt |
+| `fish` | Opt-in Fish pilot, native Dusk colors, tool integration, and compact Starship ribbon |
 | `git` | `.gitconfig`, Delta, GitHub CLI browsing, and worktree aliases |
 | `mise` | Runtime pins, environment activation, and global/project tasks |
 | `nvim` | LazyVim-based Neovim configuration and local Dusk themes |
@@ -65,7 +67,7 @@ The bootstrap links these packages into `$HOME` with `--no-folding`:
 | `bat` | Syntax highlighting with Dusk and Dusk Darker themes |
 | `eza` | File-listing colors through the selected Dusk theme directory |
 | `tmux` | Prefix, pane/TUI bindings, statusline, and selectable themes |
-| `ghostty` | Terminal settings, themes, and the Darker launcher |
+| `ghostty` | Terminal settings, themes, font alternatives, and dedicated launchers |
 | `fastfetch` | System information display |
 | `btop` | System monitor with Dusk themes |
 | `lazygit` | Git TUI colors |
@@ -89,7 +91,7 @@ global development tools and keeps their versions explicit:
 | Python | uv, installed by `mise run python:install` as `3.14.7` |
 | Rust | rustup (unchanged) |
 
-mise activation is loaded by `.zshrc`. Node project version files are read
+mise activation is loaded by both shell configurations. Node project version files are read
 conservatively; Go module requirements remain module requirements rather than
 global pins. A Homebrew Node may remain as another package's dependency, but it
 does not own the active PATH.
@@ -139,6 +141,20 @@ separate Darker instance that quits after its last window closes:
 ```bash
 ~/.config/ghostty/launch-dusk-darker
 ```
+
+The Fish pilot uses a separate Starship configuration and Ghostty launcher, so
+the Zsh prompt and login shell remain unchanged:
+
+```bash
+~/.config/ghostty/launch-fish-pilot
+```
+
+The launcher overrides Ghostty's command and shell integration and exits its
+separate app instance with the last window. It keeps the active Ghostty theme,
+opacity, blur, padding, and font settings. Font
+alternatives are installed and left as commented complete blocks in
+`~/.config/ghostty/config`; activate one block at a time, then reload the
+configuration or open a new window.
 
 Named variants are selected in each tool's normal configuration: Starship's
 `palette`, Ghostty and btop's `theme`, bat and Delta's syntax theme, Yazi's

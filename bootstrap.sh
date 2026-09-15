@@ -40,7 +40,7 @@ esac
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 BREWFILE="$REPO_ROOT/Brewfile"
 STOW_PACKAGES=(
-  zsh git mise nvim zed starship bat eza tmux ghostty fastfetch btop
+  zsh fish git mise nvim zed starship bat eza tmux ghostty fastfetch btop
   lazygit lazydocker fsh yazi aerospace
 )
 

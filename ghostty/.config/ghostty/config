@@ -27,6 +27,70 @@ font-style-bold-italic = "SemiBold Italic"
 font-synthetic-style = false
 font-size = 14
 adjust-cell-height = 7%
+
+# Font alternatives ---------------------------------------------------------
+# To audition one, comment the eight active family/style lines above and
+# uncomment one complete block below. Keep size and cell height unchanged.
+
+# Maple Mono NF — rounded, friendly, recommended first.
+# font-family = "Maple Mono NF"
+# font-family-bold = "Maple Mono NF"
+# font-family-italic = "Maple Mono NF"
+# font-family-bold-italic = "Maple Mono NF"
+# font-style = "Regular"
+# font-style-bold = "SemiBold"
+# font-style-italic = "Italic"
+# font-style-bold-italic = "SemiBold Italic"
+
+# JetBrains Mono Nerd Font Mono — conservative legibility control.
+# font-family = "JetBrainsMono Nerd Font Mono"
+# font-family-bold = "JetBrainsMono Nerd Font Mono"
+# font-family-italic = "JetBrainsMono Nerd Font Mono"
+# font-family-bold-italic = "JetBrainsMono Nerd Font Mono"
+# font-style = "Regular"
+# font-style-bold = "SemiBold"
+# font-style-italic = "Italic"
+# font-style-bold-italic = "SemiBold Italic"
+
+# Fira Code Nerd Font Mono — ligature-forward; this build has no italic face.
+# font-family = "FiraCode Nerd Font Mono"
+# font-family-bold = "FiraCode Nerd Font Mono"
+# font-family-italic = "FiraCode Nerd Font Mono"
+# font-family-bold-italic = "FiraCode Nerd Font Mono"
+# font-style = "Reg"
+# font-style-bold = "SemBd"
+# font-style-italic = false
+# font-style-bold-italic = false
+
+# Monaspace Neon NF — expressive, contemporary alternative.
+# font-family = "Monaspace Neon NF"
+# font-family-bold = "Monaspace Neon NF"
+# font-family-italic = "Monaspace Neon NF"
+# font-family-bold-italic = "Monaspace Neon NF"
+# font-style = "Regular"
+# font-style-bold = "SemiBold"
+# font-style-italic = "Italic"
+# font-style-bold-italic = "SemiBold Italic"
+
+# Commit Mono — restrained; patched variant keeps prompt glyphs aligned.
+# font-family = "CommitMono Nerd Font Mono"
+# font-family-bold = "CommitMono Nerd Font Mono"
+# font-family-italic = "CommitMono Nerd Font Mono"
+# font-family-bold-italic = "CommitMono Nerd Font Mono"
+# font-style = "Regular"
+# font-style-bold = "Bold"
+# font-style-italic = "Italic"
+# font-style-bold-italic = "Bold Italic"
+
+# Iosevka Nerd Font Mono — compact and technical.
+# font-family = "Iosevka Nerd Font Mono"
+# font-family-bold = "Iosevka Nerd Font Mono"
+# font-family-italic = "Iosevka Nerd Font Mono"
+# font-family-bold-italic = "Iosevka Nerd Font Mono"
+# font-style = "Regular"
+# font-style-bold = "SemiBold"
+# font-style-italic = "Italic"
+# font-style-bold-italic = "SemiBold Italic"
 # ---------------------------------------------------------
 # Keybindings
 # ---------------------------------------------------------
