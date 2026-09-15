@@ -54,38 +54,38 @@ deleted = "[✘${count}](fg:red bg:surface0) "
 [python]
 symbol = ""
 style = "fg:yellow bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:yellow bold)[ $version( · $virtualenv) ]($style)"
+format = "[ $symbol ](fg:crust bg:yellow bold)[](fg:yellow bg:surface0)[ $version( · $virtualenv) ]($style)"
 
 [nodejs]
 symbol = ""
 style = "fg:green bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:green bold)[ $version ]($style)"
+format = "[ $symbol ](fg:crust bg:green bold)[](fg:green bg:surface0)[ $version ]($style)"
 
 [bun]
 symbol = ""
 style = "fg:peach bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:peach bold)[ $version ]($style)"
+format = "[ $symbol ](fg:crust bg:peach bold)[](fg:peach bg:surface0)[ $version ]($style)"
 
 [rust]
 symbol = "󱘗"
 style = "fg:peach bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:peach bold)[ $version ]($style)"
+format = "[ $symbol ](fg:crust bg:peach bold)[](fg:peach bg:surface0)[ $version ]($style)"
 
 [golang]
 symbol = ""
 style = "fg:blue bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:blue bold)[ $version ]($style)"
+format = "[ $symbol ](fg:crust bg:blue bold)[](fg:blue bg:surface0)[ $version ]($style)"
 
 [docker_context]
 symbol = ""
 style = "fg:sapphire bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:sapphire bold)[ $context ]($style)"
+format = "[ $symbol ](fg:crust bg:sapphire bold)[](fg:sapphire bg:surface0)[ $context ]($style)"
 
 [kubernetes]
 disabled = false
 symbol = "󱃾"
 style = "fg:lavender bg:surface0 bold"
-format = "[ $symbol ](fg:crust bg:lavender bold)[ $context ]($style)"
+format = "[ $symbol ](fg:crust bg:lavender bold)[](fg:lavender bg:surface0)[ $context ]($style)"
 detect_files = ["Chart.yaml", "helmfile.yaml", "kustomization.yaml", "skaffold.yaml"]
 detect_folders = ["charts", "k8s", "kubernetes"]
 
