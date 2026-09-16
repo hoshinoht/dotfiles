@@ -26,9 +26,9 @@ end
 
 set -g fish_greeting
 
-if type -q fastfetch
-    fastfetch
-end
+# if type -q fastfetch
+#     hoshino
+# end
 
 
 # ── Dusk Darker interactive colours ─────────────────────
