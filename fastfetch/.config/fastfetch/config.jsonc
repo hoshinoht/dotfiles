@@ -45,8 +45,31 @@
       "key": "CPU"
     },
     {
+      "type": "gpu",
+      "key": "GPU"
+    },
+    {
+      "type": "display",
+      "key": "Display"
+    },
+    {
       "type": "memory",
       "key": "Memory"
+    },
+    {
+      "type": "disk",
+      "key": "Disk",
+      "folders": [
+        "/"
+      ]
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime"
+    },
+    {
+      "type": "battery",
+      "key": "Battery"
     },
     {
       "type": "separator",
