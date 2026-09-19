@@ -5,12 +5,19 @@
 fish_add_path --global --move \
     /opt/homebrew/bin \
     /opt/homebrew/sbin \
+    /usr/local/bin \
     "$HOME/.local/bin" \
     "$HOME/.cargo/bin" \
     "$HOME/.opencode/bin" \
     "$HOME/.lmstudio/bin" \
     "$HOME/.pub-cache/bin" \
     "$HOME/go/bin"
+
+# Added by OrbStack: command-line tools and integration.
+# Mirrors ~/.zprofile's `source ~/.orbstack/shell/init.zsh`.
+if test -f "$HOME/.orbstack/shell/init2.fish"
+    source "$HOME/.orbstack/shell/init2.fish"
+end
 
 
 # ── Environment ──────────────────────────────────────────
