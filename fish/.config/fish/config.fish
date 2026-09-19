@@ -33,28 +33,29 @@ end
 
 set -g fish_greeting
 
-# if type -q fastfetch
-#     hoshino
-# end
-
 
 # ── Dusk Darker interactive colours ─────────────────────
 set -g fish_color_normal FFFFFF
 set -g fish_color_command 8BD3FF
+set -g fish_color_function 8BD3FF
+set -g fish_color_builtin 78E1D0
 set -g fish_color_keyword C4A2D4
 set -g fish_color_quote 9BE6B5
 set -g fish_color_redirection DDA05C
 set -g fish_color_end C4A2D4
 set -g fish_color_error FF8F9A
 set -g fish_color_param E6E9F2
+set -g fish_color_option B0BCE8
 set -g fish_color_comment 697080
 set -g fish_color_selection --background=414B5E
 set -g fish_color_search_match --background=333B4B
 set -g fish_color_operator F4DA86
 set -g fish_color_escape 78E1D0
 set -g fish_color_autosuggestion 697080
+set -g fish_color_cancel FF8F9A
 set -g fish_color_cwd 8BD3FF
 set -g fish_color_cwd_root FF8F9A
+set -g fish_color_history_current --bold
 set -g fish_color_valid_path --underline
 
 set -g fish_pager_color_progress C4A2D4
@@ -78,19 +79,31 @@ else
     alias l 'ls -lG'
 end
 
-alias b btop
-alias d lazydocker
-alias ff fastfetch
+abbr -a b btop
+abbr -a d lazydocker
+abbr -a ff fastfetch
+abbr -a hoshi hoshino
+abbr -a ocode opencode2
+abbr -a grep rg
 
 # Interactive counterpart to Zsh's global --help alias.
-abbr --add --position anywhere -- --help '--help 2>&1 | bat --language=help --style=plain'
+if type -q bat
+    abbr --add --position anywhere -- --help '--help 2>&1 | bat --language=help --style=plain'
+end
 
 
 # ── fzf ──────────────────────────────────────────────────
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_DEFAULT_OPTS '--color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A --color=selected-bg:#414B5E --border=rounded --height=50%'
-set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -50'"
+if type -q bat
+    set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+end
+
+if type -q eza
+    set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -50'"
+else
+    set -gx FZF_ALT_C_OPTS "--preview 'command ls -la {} | head -50'"
+end
 
 if type -q fzf
     fzf --fish | source
