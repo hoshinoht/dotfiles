@@ -1,6 +1,6 @@
 # Shared compact prompt for Zsh and Fish.
 format = """
-$os$directory${custom.rail_start}${custom.directory_end}$git_branch$git_status$python$nodejs$bun$rust$golang$docker_context$kubernetes$cmd_duration${custom.rail_end}$line_break$character"""
+$os$directory${custom.rail_start}${custom.directory_end}$git_branch$git_status$python$nodejs$bun$rust$golang$docker_context$kubernetes${custom.rail_end}$cmd_duration$line_break$character"""
 
 add_newline = false
 continuation_prompt = "[│](overlay0) "
@@ -91,8 +91,8 @@ detect_folders = ["charts", "k8s", "kubernetes"]
 
 [cmd_duration]
 min_time = 2_000
-style = "fg:overlay1 bg:surface0"
-format = "[ $duration ]($style)"
+style = "fg:overlay1"
+format = " [$duration]($style)"
 
 # Give the directory cap a rail background only when a context module follows it.
 [custom.rail_start]
