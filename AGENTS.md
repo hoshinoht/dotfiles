@@ -15,11 +15,13 @@
   conditional modules into one rail rather than detached pills, and derive any
   leading fade from the terminal canvas toward the destination role color so
   its final step matches that segment exactly.
-- Keep Hoshino's modes visually distinct: Normal is a compact 6–9-row identity
-  rail, while Full uses a compact identity header and responsive system,
-  context, and project bands. Actual Ghostty review is the visual gate; inset
-  images need breathing room and closed rails, and semantic accents belong on
-  key values or states rather than long supporting strings.
+- Keep Hoshino's modes visually distinct: Normal is a compact 6–9-row
+  instrument rail (meters and a 24-hour day ruler), while Full uses a compact
+  identity header and responsive system, context, and project bands with a
+  metric table and stacked language bar. Actual Ghostty review is the visual
+  gate; inset images need breathing room and closed rails. Labels stay muted
+  while each value takes its role color as a whole, and a disk at 95% or more
+  is flagged `▲ full` in warning yellow.
 - Keep shell wiring isolated, but keep shared prompt visuals in the single
   Stow-managed Starship config so Zsh and Fish cannot drift. Ghostty launches
   Fish by default with automatic integration detection; changing the macOS
