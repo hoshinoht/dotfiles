@@ -19,7 +19,7 @@ window-save-state = always
 macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = #FFB8D1
-macos-icon-screen-color = #171A22,#272D39,#333B4B
+macos-icon-screen-color = #171A22,#2A2D35,#383B44
 
 # Dim unfocused splits toward the crust canvas so the active split stays clear.
 unfocused-split-opacity = 0.85

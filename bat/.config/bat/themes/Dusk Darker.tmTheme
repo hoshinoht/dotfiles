@@ -18,25 +18,25 @@
         <key>settings</key>
         <dict>
           <key>background</key>
-          <string>#272D39</string>
+          <string>#2A2D35</string>
           <key>foreground</key>
           <string>#FFFFFF</string>
           <key>caret</key>
           <string>#FFD4E2</string>
           <key>lineHighlight</key>
-          <string>#333B4B</string>
+          <string>#383B44</string>
           <key>misspelling</key>
           <string>#FF8F9A</string>
           <key>accent</key>
           <string>#C4A2D4</string>
           <key>selection</key>
-          <string>#A6ADBB40</string>
+          <string>#AAACB740</string>
           <key>activeGuide</key>
-          <string>#414B5E</string>
+          <string>#484A54</string>
           <key>findHighlight</key>
-          <string>#52617A</string>
+          <string>#5D606A</string>
           <key>gutterForeground</key>
-          <string>#858B9C</string>
+          <string>#898B95</string>
         </dict>
       </dict>
       <dict>
@@ -58,7 +58,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#A6ADBB</string>
+          <string>#AAACB7</string>
           <key>fontStyle</key>
           <string/>
         </dict>
@@ -71,7 +71,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#A6ADBB</string>
+          <string>#AAACB7</string>
           <key>fontStyle</key>
           <string>italic</string>
         </dict>
@@ -1180,7 +1180,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#C6CBD6</string>
+          <string>#C9CAD6</string>
           <key>fontStyle</key>
           <string>strikethrough</string>
         </dict>
@@ -1237,7 +1237,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#A6ADBB</string>
+          <string>#AAACB7</string>
         </dict>
       </dict>
       <dict>
@@ -2039,7 +2039,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#A6ADBB</string>
+          <string>#AAACB7</string>
         </dict>
       </dict>
       <dict>

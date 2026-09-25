@@ -86,7 +86,7 @@
   plus-emph-style = "syntax #2E4A3A"
   line-numbers-minus-style = "#FF8F9A"
   line-numbers-plus-style = "#9BE6B5"
-  line-numbers-zero-style = "#697080"
+  line-numbers-zero-style = "#6D707A"
   hunk-header-style = "file line-number syntax"
 
 [merge]

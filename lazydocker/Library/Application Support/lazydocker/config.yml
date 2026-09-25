@@ -4,10 +4,10 @@ gui:
       - "#8BD3FF"
       - bold
     inactiveBorderColor:
-      - "#697080"
+      - "#6D707A"
     optionsTextColor:
       - "#8BD3FF"
     selectedLineBgColor:
-      - "#333B4B"
+      - "#383B44"
     defaultFgColor:
       - "#FFFFFF"

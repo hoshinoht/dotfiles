@@ -63,7 +63,7 @@ ZSH_DISABLE_COMPFIX=true
 zstyle ':omz:update' mode disabled
 
 # Autosuggestion ghost text.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#697080'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6D707A'
 
 plugins=(
   git
@@ -140,11 +140,11 @@ fi
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A \
+  --color=bg+:#383B44,spinner:#FFD4E2,hl:#FF8F9A \
   --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 \
   --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A \
-  --color=selected-bg:#414B5E \
-  --color=border:#414B5E,label:#A6ADBB,separator:#333B4B,scrollbar:#414B5E,gutter:-1 \
+  --color=selected-bg:#484A54 \
+  --color=border:#484A54,label:#AAACB7,separator:#383B44,scrollbar:#484A54,gutter:-1 \
   --border=rounded \
   --height=50% \
   --layout=reverse \
@@ -207,7 +207,7 @@ zle-line-init() {
   local saved_prompt=$PROMPT
   local saved_rprompt=$RPROMPT
 
-  PROMPT='%(?.%F{#697080}.%F{#FF8F9A})❯%f '
+  PROMPT='%(?.%F{#6D707A}.%F{#FF8F9A})❯%f '
   RPROMPT=''
 
   zle .reset-prompt

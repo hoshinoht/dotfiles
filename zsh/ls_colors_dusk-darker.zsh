@@ -2,7 +2,7 @@
 # Consumed by fzf-tab via `zstyle ':completion:*' list-colors`.
 #   sky #8BD3FF dirs/source · teal #78E1D0 links · green #9BE6B5 exec
 #   peach #DDA05C archives · yellow #F4DA86 images · red #FF8F9A video
-#   maroon #FFA3AC audio · mauve #C4A2D4 special · overlay0 #697080 noise
+#   maroon #FFA3AC audio · mauve #C4A2D4 special · overlay0 #6D707A noise
 typeset -a _dusk_ls=(
   # core kinds
   'di=1;38;2;139;211;255' 'ln=38;2;120;225;208' 'ex=1;38;2;155;230;181'

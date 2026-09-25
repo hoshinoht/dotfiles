@@ -14,19 +14,19 @@ theme[title]="#FFFFFF"
 theme[hi_fg]="#8BD3FF"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#333B4B"
+theme[selected_bg]="#383B44"
 
 # Foreground color of selected item in processes box
 theme[selected_fg]="#8BD3FF"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#858B9C"
+theme[inactive_fg]="#898B95"
 
 # Color of text appearing on top of graphs
 theme[graph_text]="#E6E9F2"
 
 # Background color of the percentage meters
-theme[meter_bg]="#333B4B"
+theme[meter_bg]="#383B44"
 
 # Misc colors for processes box
 theme[proc_misc]="#FFB8D1"
@@ -38,7 +38,7 @@ theme[net_box]="#8BD3FF"
 theme[proc_box]="#B0BCE8"
 
 # Box divider line and small boxes line color
-theme[div_line]="#697080"
+theme[div_line]="#6D707A"
 
 # Temperature graph (Green -> Yellow -> Red)
 theme[temp_start]="#9BE6B5"

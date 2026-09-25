@@ -321,13 +321,13 @@ text, inactive content, selections, and the near-black canvas.
 |---|---|---|
 | Text | `#FFFFFF` | ![](palette/dusk-darker/text.svg) |
 | Subtext 1 | `#E6E9F2` | ![](palette/dusk-darker/subtext1.svg) |
-| Subtext 0 | `#C6CBD6` | ![](palette/dusk-darker/subtext0.svg) |
-| Overlay 2 | `#A6ADBB` | ![](palette/dusk-darker/overlay2.svg) |
-| Overlay 1 | `#858B9C` | ![](palette/dusk-darker/overlay1.svg) |
-| Overlay 0 | `#697080` | ![](palette/dusk-darker/overlay0.svg) |
-| Surface 2 | `#52617A` | ![](palette/dusk-darker/surface2.svg) |
-| Surface 1 | `#414B5E` | ![](palette/dusk-darker/surface1.svg) |
-| Surface 0 | `#333B4B` | ![](palette/dusk-darker/surface0.svg) |
-| Base | `#272D39` | ![](palette/dusk-darker/base.svg) |
-| Mantle | `#20242E` | ![](palette/dusk-darker/mantle.svg) |
+| Subtext 0 | `#C9CAD6` | ![](palette/dusk-darker/subtext0.svg) |
+| Overlay 2 | `#AAACB7` | ![](palette/dusk-darker/overlay2.svg) |
+| Overlay 1 | `#898B95` | ![](palette/dusk-darker/overlay1.svg) |
+| Overlay 0 | `#6D707A` | ![](palette/dusk-darker/overlay0.svg) |
+| Surface 2 | `#5D606A` | ![](palette/dusk-darker/surface2.svg) |
+| Surface 1 | `#484A54` | ![](palette/dusk-darker/surface1.svg) |
+| Surface 0 | `#383B44` | ![](palette/dusk-darker/surface0.svg) |
+| Base | `#2A2D35` | ![](palette/dusk-darker/base.svg) |
+| Mantle | `#21242C` | ![](palette/dusk-darker/mantle.svg) |
 | Crust | `#171A22` | ![](palette/dusk-darker/crust.svg) |

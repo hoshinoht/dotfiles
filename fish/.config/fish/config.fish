@@ -47,12 +47,12 @@ set -g fish_color_end C4A2D4
 set -g fish_color_error FF8F9A
 set -g fish_color_param E6E9F2
 set -g fish_color_option B0BCE8
-set -g fish_color_comment 697080
-set -g fish_color_selection --background=414B5E
-set -g fish_color_search_match --background=333B4B
+set -g fish_color_comment 6D707A
+set -g fish_color_selection --background=484A54
+set -g fish_color_search_match --background=383B44
 set -g fish_color_operator F4DA86
 set -g fish_color_escape 78E1D0
-set -g fish_color_autosuggestion 697080
+set -g fish_color_autosuggestion 6D707A
 set -g fish_color_cancel FF8F9A
 set -g fish_color_cwd 8BD3FF
 set -g fish_color_cwd_root FF8F9A
@@ -62,8 +62,8 @@ set -g fish_color_valid_path --underline
 set -g fish_pager_color_progress C4A2D4
 set -g fish_pager_color_prefix 8BD3FF --bold
 set -g fish_pager_color_completion FFFFFF
-set -g fish_pager_color_description 858B9C
-set -g fish_pager_color_selected_background --background=414B5E
+set -g fish_pager_color_description 898B95
+set -g fish_pager_color_selected_background --background=484A54
 
 
 # ── Aliases & abbreviations ──────────────────────────────
@@ -96,7 +96,7 @@ end
 # ── fzf ──────────────────────────────────────────────────
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 # Keep in sync with zsh/.zshrc.
-set -gx FZF_DEFAULT_OPTS '--color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A --color=selected-bg:#414B5E --color=border:#414B5E,label:#A6ADBB,separator:#333B4B,scrollbar:#414B5E,gutter:-1 --border=rounded --height=50% --layout=reverse --info=inline-right --prompt=\'❯ \' --pointer=\'▌\' --marker=\'◆\' --separator=\'─\' --scrollbar=\'│\''
+set -gx FZF_DEFAULT_OPTS '--color=bg+:#383B44,spinner:#FFD4E2,hl:#FF8F9A --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A --color=selected-bg:#484A54 --color=border:#484A54,label:#AAACB7,separator:#383B44,scrollbar:#484A54,gutter:-1 --border=rounded --height=50% --layout=reverse --info=inline-right --prompt=\'❯ \' --pointer=\'▌\' --marker=\'◆\' --separator=\'─\' --scrollbar=\'│\''
 set -gx FZF_CTRL_R_OPTS "--border-label=' history '"
 if type -q bat
     set -gx FZF_CTRL_T_OPTS "--border-label=' files ' --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
@@ -187,12 +187,12 @@ end
 # Colours: overlay0, with red for a failed previous command (Dusk Darker).
 function starship_transient_prompt_func
     set -l glyph ❯
-    set -l glyph_color 697080
+    set -l glyph_color 6D707A
     if not contains -- --status=0 $argv
         set glyph ✘
         set glyph_color FF8F9A
     end
-    set_color 697080
+    set_color 6D707A
     printf '󰄛 '
     set_color $glyph_color
     printf '%s ' $glyph
