@@ -95,15 +95,19 @@ end
 
 # ── fzf ──────────────────────────────────────────────────
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
-set -gx FZF_DEFAULT_OPTS '--color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A --color=selected-bg:#414B5E --border=rounded --height=50%'
+# Keep in sync with zsh/.zshrc.
+set -gx FZF_DEFAULT_OPTS '--color=bg+:#333B4B,spinner:#FFD4E2,hl:#FF8F9A --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A --color=selected-bg:#414B5E --color=border:#414B5E,label:#A6ADBB,separator:#333B4B,scrollbar:#414B5E,gutter:-1 --border=rounded --height=50% --layout=reverse --info=inline-right --prompt=\'❯ \' --pointer=\'▌\' --marker=\'◆\' --separator=\'─\' --scrollbar=\'│\''
+set -gx FZF_CTRL_R_OPTS "--border-label=' history '"
 if type -q bat
-    set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+    set -gx FZF_CTRL_T_OPTS "--border-label=' files ' --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+else
+    set -gx FZF_CTRL_T_OPTS "--border-label=' files '"
 end
 
 if type -q eza
-    set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -50'"
+    set -gx FZF_ALT_C_OPTS "--border-label=' dirs ' --preview 'eza --tree --icons --color=always {} | head -50'"
 else
-    set -gx FZF_ALT_C_OPTS "--preview 'command ls -la {} | head -50'"
+    set -gx FZF_ALT_C_OPTS "--border-label=' dirs ' --preview 'command ls -la {} | head -50'"
 end
 
 if type -q fzf

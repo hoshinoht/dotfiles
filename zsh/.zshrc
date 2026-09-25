@@ -144,13 +144,26 @@ export FZF_DEFAULT_OPTS=" \
   --color=fg:#FFFFFF,header:#FF8F9A,info:#C4A2D4,pointer:#FFD4E2 \
   --color=marker:#B0BCE8,fg+:#FFFFFF,prompt:#C4A2D4,hl+:#FF8F9A \
   --color=selected-bg:#414B5E \
+  --color=border:#414B5E,label:#A6ADBB,separator:#333B4B,scrollbar:#414B5E,gutter:-1 \
   --border=rounded \
-  --height=50%"
+  --height=50% \
+  --layout=reverse \
+  --info=inline-right \
+  --prompt='❯ ' \
+  --pointer='▌' \
+  --marker='◆' \
+  --separator='─' \
+  --scrollbar='│'"
+# Keep in sync with fish/.config/fish/config.fish.
+
+export FZF_CTRL_R_OPTS="--border-label=' history '"
 
 export FZF_CTRL_T_OPTS="\
+--border-label=' files ' \
 --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 export FZF_ALT_C_OPTS="\
+--border-label=' dirs ' \
 --preview 'eza --tree --icons --color=always {} | head -50'"
 
 
