@@ -26,9 +26,27 @@
     "allow_data_collection": "no"
   },
   "agent": {
+    "sandbox_permissions": {
+      "write_paths": [
+        {
+          "requested": "/Users/cantabile/.local/share/opencode/log",
+          "resolved": "/Users/cantabile/.local/share/opencode/log"
+        }
+      ]
+    },
     "default_profile": "write",
     "tool_permissions": {
       "tools": {
+        "search_web": {
+          "default": "allow"
+        },
+        "create_directory": {
+          "always_allow": [
+            {
+              "pattern": "^opencode/packages/model-presets/"
+            }
+          ]
+        },
         "terminal": {
           "default": "allow"
         }
@@ -37,9 +55,9 @@
     "flexible": false,
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "model": "gpt-6-sol",
       "enable_thinking": true,
-      "effort": "high"
+      "effort": "medium"
     },
     "favorite_models": [],
     "model_parameters": []
