@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Guard the Dusk themes against drift.
+
+1. Every hex colour in a themed file must come from its Starship palette
+   (`[palettes.dusk]` / `[palettes.dusk-darker]` in starship.toml, the source
+   of truth), unless it is a documented derived colour in ALLOWED.
+2. Starship's three rail modules must share one context condition, with
+   `custom.directory_end` as its exact negation.
+
+Run from anywhere: scripts/check-theme
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+STARSHIP = ROOT / "starship/.config/starship.toml"
+
+DARKER = "dusk-darker"
+DUSK = "dusk"
+
+# Themed file -> palette it must draw from.
+FILES = {
+    "fish/.config/fish/config.fish": DARKER,
+    "zsh/.zshrc": DARKER,
+    "zsh/ls_colors_dusk-darker.zsh": DARKER,
+    "tmux/.config/tmux/statusline-dusk-darker.conf": DARKER,
+    "tmux/.config/tmux/statusline-dusk.conf": DUSK,
+    "lazygit/Library/Application Support/lazygit/config.yml": DARKER,
+    "lazydocker/Library/Application Support/lazydocker/config.yml": DARKER,
+    "git/.gitconfig": DARKER,
+    "fastfetch/.config/fastfetch/config.jsonc": DARKER,
+    "ghostty/.config/ghostty/config": DARKER,
+    "ghostty/.config/ghostty/themes/dusk-darker": DARKER,
+    "ghostty/.config/ghostty/themes/dusk": DUSK,
+    "btop/.config/btop/themes/dusk-darker.theme": DARKER,
+    "btop/.config/btop/themes/dusk.theme": DUSK,
+    "yazi/.config/yazi/flavors/dusk-darker.yazi/flavor.toml": DARKER,
+    "eza/.config/eza/themes/dusk-darker/theme.yml": DARKER,
+}
+
+# Deliberate colours derived from the palette rather than members of it.
+ALLOWED = {
+    # Delta diff backgrounds: red/green tinted toward crust.
+    "git/.gitconfig": {"3A252D", "56323B", "22352D", "2E4A3A"},
+    # Bright ANSI green/yellow: lifted variants of the palette hues.
+    "ghostty/.config/ghostty/themes/dusk-darker": {"AEF2C5", "F8E49C"},
+    # Bright ANSI red/green/yellow for the original Dusk.
+    "ghostty/.config/ghostty/themes/dusk": {"E88A8A", "96D4B0", "E6D08E"},
+}
+
+HEX = re.compile(r"(?<![0-9A-Za-z])#?([0-9A-Fa-f]{6})(?![0-9A-Za-z])")
+RAIL_START = "custom.rail_start"
+RAIL_END = "custom.rail_end"
+DIRECTORY_END = "custom.directory_end"
+
+
+def table(text: str, name: str) -> str:
+    match = re.search(
+        r"^\[%s\]\n(.*?)(?=^\[|\Z)" % re.escape(name), text, re.S | re.M
+    )
+    if not match:
+        raise SystemExit(f"starship.toml: missing [{name}]")
+    return match.group(1)
+
+
+def palette(text: str, name: str) -> set[str]:
+    colours = re.findall(r'"#([0-9A-Fa-f]{6})"', table(text, f"palettes.{name}"))
+    return {c.upper() for c in colours}
+
+
+def when(text: str, module: str) -> str:
+    match = re.search(r'^when = "(.*)"$', table(text, module), re.M)
+    if not match:
+        raise SystemExit(f"starship.toml: [{module}] has no single-line when")
+    return match.group(1)
+
+
+def main() -> int:
+    starship = STARSHIP.read_text(encoding="utf-8")
+    palettes = {DARKER: palette(starship, DARKER), DUSK: palette(starship, DUSK)}
+    failures: list[str] = []
+
+    for rel, name in FILES.items():
+        path = ROOT / rel
+        if not path.is_file():
+            failures.append(f"{rel}: listed but missing")
+            continue
+        found = {h.upper() for h in HEX.findall(path.read_text(encoding="utf-8"))}
+        stray = sorted(found - palettes[name] - ALLOWED.get(rel, set()))
+        if stray:
+            failures.append(f"{rel}: not in {name} palette: {', '.join(stray)}")
+
+    for rel, colours in ALLOWED.items():
+        text = (ROOT / rel).read_text(encoding="utf-8").upper()
+        unused = sorted(c for c in colours if c not in text)
+        if unused:
+            failures.append(f"{rel}: stale ALLOWED entries: {', '.join(unused)}")
+
+    condition = when(starship, RAIL_START)
+    if when(starship, RAIL_END) != condition:
+        failures.append(f"starship.toml: [{RAIL_END}] when differs from [{RAIL_START}]")
+    if when(starship, DIRECTORY_END) != f"! ({condition})":
+        failures.append(
+            f"starship.toml: [{DIRECTORY_END}] when is not the negation of [{RAIL_START}]"
+        )
+
+    if failures:
+        print("theme check failed:", *failures, sep="\n  ", file=sys.stderr)
+        return 1
+    print(f"theme check ok: {len(FILES)} files, rail conditions in sync")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

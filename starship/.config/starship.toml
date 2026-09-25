@@ -95,6 +95,8 @@ style = "fg:overlay1"
 format = " [$duration]($style)"
 
 # Give the directory cap a rail background only when a context module follows it.
+# The three rail `when` conditions must stay identical (directory_end negated);
+# scripts/check-theme enforces this.
 [custom.rail_start]
 command = "printf rail"
 when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1 || test -n \"$DOCKER_CONTEXT\" || test -e pyproject.toml || test -e package.json || test -e bun.lock || test -e bun.lockb || test -e bunfig.toml || test -e Cargo.toml || test -e go.mod || test -e Dockerfile || test -e compose.yaml || test -e docker-compose.yml || test -e Chart.yaml || test -e helmfile.yaml || test -e kustomization.yaml || test -e skaffold.yaml || test -d charts || test -d k8s || test -d kubernetes"

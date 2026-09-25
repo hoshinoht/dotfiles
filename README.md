@@ -39,6 +39,15 @@ mise run doctor
 mise run check
 ```
 
+After changing theme colours, run the repo-local drift check. It verifies
+that every hex in the themed configs belongs to its Starship Dusk palette
+(apart from documented derived tints) and that Starship's rail conditions
+match:
+
+```bash
+scripts/check-theme
+```
+
 ## Homebrew inventory
 
 `Brewfile` declares direct dependencies only. Formulae are `neovim` (the
