@@ -183,8 +183,20 @@ if type -q mise
     mise activate fish | source
 end
 
+# Past prompts collapse to a quiet line so only the live prompt carries the rail.
+# Colours: overlay0, with red for a failed previous command (Dusk Darker).
 function starship_transient_prompt_func
-    starship module character
+    set -l glyph ❯
+    set -l glyph_color 697080
+    if not contains -- --status=0 $argv
+        set glyph ✘
+        set glyph_color FF8F9A
+    end
+    set_color 697080
+    printf '󰄛 '
+    set_color $glyph_color
+    printf '%s ' $glyph
+    set_color normal
 end
 
 if type -q starship
