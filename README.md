@@ -18,7 +18,7 @@ cd ~/.dotfiles
 
 `bootstrap.sh` installs the tracked [Brewfile](Brewfile) with no upgrades or
 cleanup, initializes Oh My Zsh plugins and TPM when they are absent, links
-the 18 Stow packages with `--no-folding`, installs the configured mise tools
+the 20 Stow packages with `--no-folding`, installs the configured mise tools
 and default Python, builds the bat cache, and may install tmux plugins. It
 does not change the login shell (`chsh`) or remove packages. Set
 `INSTALL_TMUX_PLUGINS=0` to skip optional TPM plugin installation.
@@ -53,7 +53,8 @@ scripts/check-theme
 `Brewfile` declares direct dependencies only. Formulae are `neovim` (the
 stable Homebrew formula), `stow`, `mise`, `fzf`, `fd`, `ripgrep`, `bat`, `eza`,
 `zoxide`, `starship`, `fish`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
-`git`, `git-delta`, `git-lfs`, and `fastfetch`. Casks are AeroSpace (from its
+`git`, `git-delta`, `git-lfs`, `fastfetch`, and JankyBorders (`borders`) and
+`sketchybar` from the FelixKratz tap. Casks are AeroSpace (from its
 trusted tap), Ghostty, OrbStack, Raycast, Zed, Blex Mono Nerd Font, and
 the JetBrains Mono, Maple Mono, Fira Code, Monaspace, Commit Mono, and Iosevka
 font alternatives. Oh My Zsh, fzf-tab, zsh-autosuggestions,
@@ -84,6 +85,8 @@ The bootstrap links these packages into `$HOME` with `--no-folding`:
 | `fsh` | fast-syntax-highlighting themes for both Dusk variants |
 | `yazi` | File manager flavor and syntax theme |
 | `aerospace` | AeroSpace tiling window-manager configuration |
+| `borders` | JankyBorders focus borders: sky active, surface0 inactive |
+| `sketchybar` | Status bar with the prompt's fade, AeroSpace workspace rail, and clock |
 
 ## Runtime ownership
 

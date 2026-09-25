@@ -22,6 +22,11 @@ brew "git-delta"
 brew "git-lfs"
 brew "fastfetch"
 
+# Window chrome for AeroSpace: focus borders and the status bar.
+tap "felixkratz/formulae"
+brew "felixkratz/formulae/borders"
+brew "felixkratz/formulae/sketchybar"
+
 # AeroSpace is distributed from its own tap. Trust only the cask we use.
 tap "nikitabobko/tap", trusted: { cask: "aerospace" }
 cask "nikitabobko/tap/aerospace"

@@ -2,7 +2,18 @@
 # https://nikitabobko.github.io/AeroSpace/guide
 
 after-login-command = []
-after-startup-command = []
+# SketchyBar and JankyBorders both detect an already running instance, so
+# these are safe on every AeroSpace restart. Absolute paths: AeroSpace's
+# environment does not include Homebrew's bin directory.
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/bin/sketchybar',
+  'exec-and-forget /opt/homebrew/bin/borders',
+]
+
+# Tell SketchyBar which workspace is focused (plugins/aerospace.sh).
+exec-on-workspace-change = ['/bin/bash', '-c',
+  '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 # Normalizations
 enable-normalization-flatten-containers = true
@@ -22,6 +33,9 @@ outer.left = 10
 outer.right = 10
 outer.bottom = 10
 outer.top = 10
+# With SketchyBar running and the macOS menu bar set to hide automatically,
+# reserve the 32 pt bar plus its 4 pt offset on the main display:
+# outer.top = [{ monitor.main = 46 }, 10]
 
 # ── Main mode keybindings ────────────────────────────────
 
@@ -104,9 +118,12 @@ run = 'move-node-to-workspace 1'
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1'
 
-# 2 = Terminal
+# 2 = Terminal. Startup only: the Ghostty quick terminal shares the app id,
+# and moving it would drag the drop-down off the current workspace. Ghostty
+# windows opened later stay where they are opened.
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
+if.during-aerospace-startup = true
 run = 'move-node-to-workspace 2'
 
 # 3 = Editor
