@@ -6,6 +6,7 @@ fish_add_path --global --move \
     /opt/homebrew/bin \
     /opt/homebrew/sbin \
     /usr/local/bin \
+    /Library/TeX/texbin \
     "$HOME/.local/bin" \
     "$HOME/.cargo/bin" \
     "$HOME/.opencode/bin" \
