@@ -1,11 +1,11 @@
 return {
   -- Keep the existing Catppuccin setup available as a fallback. The default
   -- Dusk schemes are local runtime files and do not add another dependency.
+  -- Lazy-loaded: `:colorscheme catppuccin` still loads it on demand.
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     opts = {
       flavour = "macchiato",
       transparent_background = true,
