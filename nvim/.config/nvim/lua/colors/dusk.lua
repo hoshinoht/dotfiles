@@ -276,11 +276,74 @@ local function theme(c)
   }
 end
 
+-- Transparent layer, mirroring the Zed Dusk theme: the editor, gutter,
+-- splits, sidebars, and tab bar let Ghostty's translucent, blurred canvas show
+-- through; the active line drops its band and keeps only the pink number.
+-- Floating surfaces (NormalFloat, Pmenu, completion, Noice, which-key) stay
+-- solid like Zed's elevated surfaces so popups remain readable. The Snacks
+-- picker clears too because it shares groups with the explorer sidebar; its
+-- borders keep it legible.
+local clear_bg = {
+  "Normal",
+  "NormalNC",
+  "SignColumn",
+  "LineNr",
+  "FoldColumn",
+  "EndOfBuffer",
+  "StatusColumn",
+  "CursorLine",
+  "CursorLineNr",
+  "WinBar",
+  "WinBarNC",
+  "VertSplit",
+  "WinSeparator",
+  "MsgArea",
+  "MsgSeparator",
+  "TabLineFill",
+  -- Zed's status bar is crust at ~85%, which is Ghostty's canvas already.
+  "StatusLine",
+  "StatusLineNC",
+  "GitSignsAdd",
+  "GitSignsChange",
+  "GitSignsDelete",
+  "GitSignsChangedelete",
+  "GitSignsTopdelete",
+  "GitSignsUntracked",
+  "BufferLineFill",
+  "BufferLineBackground",
+  "BufferLineBufferSelected",
+  "BufferLineIndicatorSelected",
+  "BufferLineModified",
+  "BufferLineModifiedSelected",
+  "NeoTreeNormal",
+  "NeoTreeNormalNC",
+  "TroubleNormal",
+  "SnacksPicker",
+  "SnacksPickerBorder",
+}
+
+local function make_transparent(highlights)
+  for _, group in ipairs(clear_bg) do
+    local spec = highlights[group]
+    if spec then
+      spec.bg = "NONE"
+    end
+  end
+  return highlights
+end
+
+function M.palette(name)
+  return palettes[name]
+end
+
 function M.setup(name)
   local c = palettes[name]
   if not c then
     error("unknown Dusk colorscheme: " .. tostring(name))
   end
+
+  -- Opt out with `vim.g.dusk_transparent = false` before loading the scheme.
+  local transparent = vim.g.dusk_transparent ~= false
 
   vim.cmd("highlight clear")
   if vim.fn.exists("syntax_on") == 1 then
@@ -290,7 +353,8 @@ function M.setup(name)
   vim.o.termguicolors = true
   vim.g.colors_name = name
 
-  set_highlights(theme(c))
+  local highlights = theme(c)
+  set_highlights(transparent and make_transparent(highlights) or highlights)
   link_highlights({
     "@comment",
     "@comment.documentation",

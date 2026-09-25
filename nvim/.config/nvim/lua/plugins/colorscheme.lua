@@ -68,4 +68,31 @@ return {
       colorscheme = "dusk-darker",
     },
   },
+
+  -- Transparent Dusk clears StatusLine, which lualine's auto theme would
+  -- otherwise fill with black. The middle section shows the canvas; the
+  -- branch section sits on surface0 like the Starship Git rail.
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      local name = vim.g.colors_name or ""
+      local c = require("colors.dusk").palette(name)
+      if not c or vim.g.dusk_transparent == false then
+        return
+      end
+      local theme = require("lualine.themes.auto")
+      for _, mode in pairs(theme) do
+        if type(mode) == "table" then
+          if mode.b then
+            mode.b.bg = c.surface0
+          end
+          if mode.c then
+            mode.c.bg = "NONE"
+          end
+        end
+      end
+      opts.options = opts.options or {}
+      opts.options.theme = theme
+    end,
+  },
 }
