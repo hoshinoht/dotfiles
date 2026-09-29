@@ -1,0 +1,3 @@
+[submodule "tools/hoshino"]
+	path = tools/hoshino
+	url = https://github.com/hoshinoht/hoshino.git
