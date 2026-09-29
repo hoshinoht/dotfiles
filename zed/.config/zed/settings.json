@@ -1,6 +1,25 @@
 {
+  "git_panel": {
+    "button": true,
+    "file_icons": false
+  },
+  "title_bar": {
+    "show_branch_status_icon": true
+  },
+  "project_panel": {
+    "git_status": true,
+    "button": true
+  },
+  "tabs": {
+    "git_status": false
+  },
   "vim_mode": false,
   "status_bar": {
+    "show_active_file": true,
+    "pending_keystrokes_indicator": true,
+    "line_endings_button": true,
+    "active_encoding_button": "enabled",
+    "active_language_button": true,
     "cursor_position_button": true
   },
   "agent_servers": {
@@ -71,6 +90,7 @@
     "trust_all_worktrees": true
   },
   "terminal": {
+    "button": true,
     "font_family": "Maple Mono NF",
     "font_features": {
       "calt": false,
@@ -85,6 +105,7 @@
     }
   },
   "tab_bar": {
+    "show_tab_bar_buttons": true,
     "show": false
   },
   "search": {
