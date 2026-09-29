@@ -1,0 +1,5 @@
+# Keys trusted to sign as these addresses; lets git verify signatures locally.
+# id_ed25519 (macbook), current:
+74333787+hoshinoht@users.noreply.github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyqW0qSnshpf5u14xHDaO1x+dC3GqSg4aPZZDTmaKwU
+# Previous id_ed25519, retired; kept so older commits still verify:
+pohaoting@gmail.com,74333787+hoshinoht@users.noreply.github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGkDZaVbr4LyDmg4d9fFvu7QnNceSIQYRfTA6+mmCAp/
