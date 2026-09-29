@@ -96,6 +96,8 @@ export EZA_CONFIG_DIR="$HOME/.config/eza/themes/dusk-darker"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+# tmux passes truecolor (RGB); stop Claude Code clamping its TUI and statusline to 256 colours.
+export CLAUDE_CODE_TMUX_TRUECOLOR=1
 
 
 # ── Aliases ──────────────────────────────────────────────

@@ -27,6 +27,8 @@ set -gx EZA_CONFIG_DIR "$HOME/.config/eza/themes/dusk-darker"
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
 set -gx _ZO_DOCTOR 0
+# tmux passes truecolor (RGB); stop Claude Code clamping its TUI and statusline to 256 colours.
+set -gx CLAUDE_CODE_TMUX_TRUECOLOR 1
 
 if not status is-interactive
     return
