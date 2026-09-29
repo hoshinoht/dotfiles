@@ -1,0 +1,41 @@
+#!/bin/zsh
+set -e
+
+# Trial Maple Mono v8 (beta, variable weight) beside the installed v7.9.
+# Uses the normal Ghostty config and changes only the font for this separate
+# instance. The trial copy is renamed "Maple Mono NF V8" so it cannot clash
+# with v7.9's "Maple Mono NF".
+#
+# The weight axis (100–800) is tunable per launch; the defaults match v7.9's
+# Regular and SemiBold, so the first comparison is glyphs only:
+#   MAPLE_WGHT=420 MAPLE_WGHT_BOLD=640 launch-maple-v8
+# MAPLE_WGHT sets normal text; MAPLE_WGHT_BOLD sets SGR bold, which is the
+# prompt's emphasis weight.
+
+family="Maple Mono NF V8"
+font_file="$HOME/Library/Fonts/MapleMonoNFV8[wght].ttf"
+wght="${MAPLE_WGHT:-400}"
+wght_bold="${MAPLE_WGHT_BOLD:-600}"
+
+if [[ ! -f "$font_file" ]]; then
+  print -u2 "Maple Mono v8 trial font not installed: $font_file"
+  exit 1
+fi
+
+if [[ ! "$wght $wght_bold" =~ '^[0-9]+ [0-9]+$' ]] ||
+   (( wght < 100 || wght > 800 || wght_bold < 100 || wght_bold > 800 )); then
+  print -u2 "MAPLE_WGHT and MAPLE_WGHT_BOLD must be whole numbers from 100 to 800"
+  exit 1
+fi
+
+# CLI font families replace the config's list rather than adding fallbacks.
+exec open -na Ghostty.app --args \
+  "--font-family=$family" \
+  "--font-family-bold=$family" \
+  "--font-family-italic=$family" \
+  "--font-family-bold-italic=$family" \
+  "--font-variation=wght=$wght" \
+  "--font-variation-bold=wght=$wght_bold" \
+  "--font-variation-italic=wght=$wght" \
+  "--font-variation-bold-italic=wght=$wght_bold" \
+  --quit-after-last-window-closed=true
