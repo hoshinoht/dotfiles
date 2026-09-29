@@ -40,9 +40,6 @@ FILES = {
     "btop/.config/btop/themes/dusk.theme": DUSK,
     "yazi/.config/yazi/flavors/dusk-darker.yazi/flavor.toml": DARKER,
     "eza/.config/eza/themes/dusk-darker/theme.yml": DARKER,
-    "borders/.config/borders/bordersrc": DARKER,
-    "sketchybar/.config/sketchybar/sketchybarrc": DARKER,
-    "sketchybar/.config/sketchybar/plugins/aerospace.sh": DARKER,
 }
 
 # Deliberate colours derived from the palette rather than members of it.
@@ -51,14 +48,11 @@ ALLOWED = {
     "git/.gitconfig": {"3A252D", "56323B", "22352D", "2E4A3A"},
     # Bright ANSI green/yellow: lifted variants of the palette hues.
     "ghostty/.config/ghostty/themes/dusk-darker": {"AEF2C5", "F8E49C"},
-    # Fully transparent bar background (alpha 00).
-    "sketchybar/.config/sketchybar/sketchybarrc": {"000000"},
     # Bright ANSI red/green/yellow for the original Dusk.
     "ghostty/.config/ghostty/themes/dusk": {"E88A8A", "96D4B0", "E6D08E"},
 }
 
-# #RRGGBB, bare RRGGBB, or 0xAARRGGBB (JankyBorders, SketchyBar).
-HEX = re.compile(r"(?<![0-9A-Za-z])(?:#|0x[0-9A-Fa-f]{2})?([0-9A-Fa-f]{6})(?![0-9A-Za-z])")
+HEX = re.compile(r"(?<![0-9A-Za-z])#?([0-9A-Fa-f]{6})(?![0-9A-Za-z])")
 RAIL_START = "custom.rail_start"
 RAIL_END = "custom.rail_end"
 DIRECTORY_END = "custom.directory_end"

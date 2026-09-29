@@ -111,8 +111,7 @@ keybind = cmd+d=new_split:right
 
 # Drop-down terminal from anywhere. Global binds need Ghostty to have
 # Accessibility permission (System Settings → Privacy & Security).
-# alt+` joins the AeroSpace alt-* family; cmd+` (window cycling) and
-# ctrl+` (Zed terminal) stay free.
+# cmd+` (window cycling) and ctrl+` (Zed terminal) stay free.
 keybind = global:alt+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
 quick-terminal-animation-duration = 0.15

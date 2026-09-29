@@ -41,7 +41,7 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 BREWFILE="$REPO_ROOT/Brewfile"
 STOW_PACKAGES=(
   zsh fish git mise nvim zed starship bat eza tmux ghostty fastfetch btop
-  lazygit lazydocker fsh yazi aerospace borders sketchybar
+  lazygit lazydocker fsh yazi
 )
 
 [[ "$(uname -s)" == "Darwin" ]] || die "macOS is required"
