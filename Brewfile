@@ -24,7 +24,6 @@ brew "fastfetch"
 
 cask "ghostty"
 cask "orbstack"
-cask "raycast"
 cask "zed"
 cask "font-blex-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
