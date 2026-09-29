@@ -137,6 +137,22 @@ vimcmd_replace_one_symbol = "[󰄛 ◆](yellow bold)"
 vimcmd_replace_symbol = "[󰄛 ◆](yellow bold)"
 vimcmd_visual_symbol = "[󰄛 ◆](yellow bold)"
 
+# Palettes are the source of truth for every themed config (scripts/check-theme).
+#
+# Tonal pairs (Material 3 containers): each `*_container` sits at the same
+# OKLCH lightness as red_container (L≈0.41) with its accent's hue; each
+# `on_*_container` is the tone-90 tint of that hue (≥7:1 on its container).
+# A container marks a selected or flagged item without borrowing a new role.
+#
+# Surface ladder as M3 surface containers: crust = lowest, mantle = low,
+# base = container, surface0 = high, surface1 = highest.
+#
+# Shape scale, shared by the prompt, tmux and the Claude statusline:
+#   full round (U+E0B4/E0B6 caps) — identity or "where you are";
+#   rail cells, capped only at the rail ends — grouped context;
+#   square ends on a container tone — "needs attention" (status, conflicts,
+#   tmux bell/activity tabs).
+
 [palettes.dusk]
 rosewater = "#FCE4DE"
 flamingo = "#F2BFB4"
@@ -172,6 +188,10 @@ red_container = "#7D2A2D"
 on_red_container = "#FFDAD8"
 yellow_container = "#564507"
 on_yellow_container = "#FCE095"
+pink_container = "#6D3646"
+on_pink_container = "#FEDEE6"
+sky_container = "#095366"
+on_sky_container = "#C8EFFE"
 
 [palettes.dusk-darker]
 rosewater = "#FFD4E2"
@@ -208,6 +228,10 @@ red_container = "#7D2936"
 on_red_container = "#FFDADB"
 yellow_container = "#564500"
 on_yellow_container = "#FBE18C"
+pink_container = "#6C364C"
+on_pink_container = "#FFDEE8"
+sky_container = "#125070"
+on_sky_container = "#D1EDFF"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
