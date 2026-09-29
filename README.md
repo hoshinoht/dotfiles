@@ -53,11 +53,11 @@ scripts/check-theme
 `Brewfile` declares direct dependencies only. Formulae are `neovim` (the
 stable Homebrew formula), `stow`, `mise`, `fzf`, `fd`, `ripgrep`, `bat`, `eza`,
 `zoxide`, `starship`, `fish`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
-`git`, `git-delta`, `git-lfs`, and `fastfetch`. Casks are Ghostty, OrbStack, Zed, Blex Mono Nerd Font, and
-the JetBrains Mono, Maple Mono, Fira Code, Monaspace, Commit Mono, and Iosevka
-font alternatives. Oh My Zsh, fzf-tab, zsh-autosuggestions,
-fast-syntax-highlighting, and TPM are initialized by `bootstrap.sh` rather
-than declared as Homebrew packages.
+`git`, `git-delta`, `git-lfs`, `fastfetch`, and `pam-reattach`. Casks are
+Ghostty, OrbStack, Zed, Blex Mono Nerd Font, and the JetBrains Mono, Maple
+Mono, Fira Code, Monaspace, Commit Mono, and Iosevka font alternatives. Oh My
+Zsh, fzf-tab, zsh-autosuggestions, fast-syntax-highlighting, and TPM are
+initialized by `bootstrap.sh` rather than declared as Homebrew packages.
 
 ## Stow packages
 

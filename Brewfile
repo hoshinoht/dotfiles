@@ -21,6 +21,8 @@ brew "git"
 brew "git-delta"
 brew "git-lfs"
 brew "fastfetch"
+# Touch ID for sudo inside tmux (macos/sudo-touchid.sh).
+brew "pam-reattach"
 
 cask "ghostty"
 cask "orbstack"
