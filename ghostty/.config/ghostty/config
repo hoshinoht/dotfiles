@@ -28,16 +28,26 @@ unfocused-split-fill = #171A22
 # ---------------------------------------------------------
 # Typography
 # ---------------------------------------------------------
-font-family = "Maple Mono NF"
-font-family-bold = "Maple Mono NF"
-font-family-italic = "Maple Mono NF"
-font-family-bold-italic = "Maple Mono NF"
+# TRIAL: Maple Mono v8 beta (variable weight), renamed "Maple Mono NF V8".
+# Revert by setting these four back to "Maple Mono NF" and removing the
+# font-variation lines.
+font-family = "Maple Mono NF V8"
+font-family-bold = "Maple Mono NF V8"
+font-family-italic = "Maple Mono NF V8"
+font-family-bold-italic = "Maple Mono NF V8"
+font-variation = wght=400
+font-variation-bold = wght=650
+font-variation-italic = wght=400
+font-variation-bold-italic = wght=650
 font-style = "Regular"
 font-style-bold = "SemiBold"
 font-style-italic = "Italic"
 font-style-bold-italic = "SemiBold Italic"
 font-synthetic-style = false
 font-feature = -calt, -liga, -dlig
+# Glyph variants for the prompt's dense digits and counts: slashed/dotted
+# zero and `?` with larger openings.
+font-feature = +zero, +cv62
 font-size = 14
 adjust-cell-height = 7%
 
