@@ -2,7 +2,7 @@
 # Appearance & Theme
 # ---------------------------------------------------------
 theme = dusk-darker
-background-opacity = 0.85
+background-opacity = 0.94
 background-blur-radius = 10
 # minimum-contrast = 1
 
@@ -28,7 +28,7 @@ unfocused-split-fill = #171A22
 # ---------------------------------------------------------
 # Typography
 # ---------------------------------------------------------
-# TRIAL: Maple Mono v8 beta (variable weight), renamed "Maple Mono NF V8".
+# Adopted Maple Mono v8 beta (variable weight), renamed "Maple Mono NF V8".
 # Revert by setting these four back to "Maple Mono NF" and removing the
 # font-variation lines.
 font-family = "Maple Mono NF V8"
@@ -118,6 +118,8 @@ adjust-cell-height = 7%
 # Keybindings
 # ---------------------------------------------------------
 keybind = cmd+d=new_split:right
+# Toggle between the translucent Dusk canvas and an opaque focus surface.
+keybind = cmd+shift+o=toggle_background_opacity
 
 # Drop-down terminal from anywhere. Global binds need Ghostty to have
 # Accessibility permission (System Settings → Privacy & Security).

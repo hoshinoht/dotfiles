@@ -159,10 +159,20 @@ An explicit separate Fish instance remains available through:
 ```
 
 The launcher exits its separate app instance with the last window. It keeps the
-active Ghostty theme, opacity, blur, padding, and typography. Monaspace Neon NF
-is the active font; the other installed alternatives are commented as complete
+active Ghostty theme, opacity, blur, padding, and typography. Maple Mono v8 beta
+is the active font in Ghostty and Zed, using the locally installed, renamed
+`Maple Mono NF V8` family (not installed by bootstrap). Ghostty uses variable
+weights 400/650. The other installed alternatives are commented as complete
 blocks in `~/.config/ghostty/config`. Activate one block at a time, then reload the
 configuration or open a new window.
+
+Ghostty uses 94% background opacity with blur. `Cmd-Shift-O` toggles an opaque
+focus surface. Restart Ghostty to apply a changed opacity setting on macOS.
+
+Fish shows `hoshino` once at shell startup, including outside Git repositories.
+Entering a different Git worktree clears the screen and shows `hoshino` again;
+navigation within the same worktree stays quiet. Run `hoshino --full` for the
+full dashboard or `hoshino live` for the interactive display.
 
 Named variants are selected in each tool's normal configuration: Starship's
 `palette`, Ghostty and btop's `theme`, bat and Delta's syntax theme, Yazi's
