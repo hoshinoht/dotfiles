@@ -87,6 +87,13 @@ source "$ZSH/oh-my-zsh.sh"
 # ── Options ──────────────────────────────────────────────
 unsetopt prompt_sp
 
+# History
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt INC_APPEND_HISTORY
+
 
 # ── Environment ──────────────────────────────────────────
 export EDITOR="nvim"
@@ -105,7 +112,7 @@ alias cat='bat --paging=never'
 
 if (( $+commands[eza] )); then
   alias ls='eza --icons --group-directories-first'
-  alias ll='eza -la --icons --group-directories-first'
+  alias ll='eza -la --icons --group-directories-first --git'
   alias l='eza -l --icons --group-directories-first'
   alias tree='eza --tree'
 else
@@ -127,6 +134,8 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias b='btop'
 alias d='lazydocker'
 alias ff='fastfetch'
+alias hoshi='hoshino'
+alias ocode='opencode2'
 
 
 # ── LS_COLORS (Dusk) ─────────────────────────────────────
