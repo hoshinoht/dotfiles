@@ -52,8 +52,9 @@ scripts/check-theme
 
 `Brewfile` declares direct dependencies only. Formulae are `neovim` (the
 stable Homebrew formula), `stow`, `mise`, `fzf`, `fd`, `ripgrep`, `bat`, `eza`,
-`zoxide`, `starship`, `fish`, `tmux`, `yazi`, `btop`, `lazygit`, `lazydocker`, `gh`,
-`git`, `git-delta`, `git-lfs`, `fastfetch`, and `pam-reattach`. Casks are
+`duf`, `dust`, `procs`, `hyperfine`, `sd`, `zoxide`, `starship`, `fish`, `tmux`,
+`yazi`, `ffmpeg`, `imagemagick`, `btop`, `lazygit`, `lazydocker`, `gh`, `git`,
+`git-delta`, `git-lfs`, `fastfetch`, and `pam-reattach`. Casks are
 Ghostty, OrbStack, Zed, Blex Mono Nerd Font, and the JetBrains Mono, Maple
 Mono, Fira Code, Monaspace, Commit Mono, and Iosevka font alternatives. Oh My
 Zsh, fzf-tab, zsh-autosuggestions, fast-syntax-highlighting, and TPM are
@@ -81,7 +82,7 @@ The bootstrap links these packages into `$HOME` with `--no-folding`:
 | `lazygit` | Git TUI colors |
 | `lazydocker` | Container TUI colors |
 | `fsh` | fast-syntax-highlighting themes for both Dusk variants |
-| `yazi` | File manager flavor and syntax theme |
+| `yazi` | File manager theme, media previews, and preview shortcuts |
 
 ## Runtime ownership
 
@@ -208,6 +209,25 @@ Bindings are deliberately assigned by layer rather than duplicated:
 | Neovim / Zed | Space is the leader; Zed's managed normal-mode shortcuts include `Space-f`, `Space-s`, `Space-p`, `Space-d`, and `Space-g` |
 | TUIs | Native TUI keybindings remain available inside lazygit, lazydocker, btop, and yazi |
 | Ghostty | `Cmd-D` opens a right-hand split |
+
+## Yazi media previews
+
+Yazi's built-in image preview handles WebP and GIF as still images. MP4 and
+WebM use FFmpeg thumbnails; `J`/`K` seek in 5% steps with fractional-second
+precision, including short screen recordings. These
+previews do not play animations or audio.
+
+- `T` maximizes the preview pane; press `T` again to restore the columns.
+  Smaller raster images are upscaled with ImageMagick to fit the available
+  area. The official `toggle-pane` plugin is included under the Stow package,
+  with its revision recorded in `package.toml`.
+- `Ctrl-P` opens the hovered file in a macOS Quick Look popup. Close the
+  popup with Escape. Playback and format support depend on macOS codecs.
+- Image previews are capped at 4096×4096 physical pixels for Retina displays.
+  Run `ya cache clear` after changing these limits to regenerate thumbnails.
+
+Restart Yazi after changing its configuration. Ghostty supports Yazi's
+image protocol directly.
 
 ## Git and worktrees
 

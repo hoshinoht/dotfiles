@@ -9,7 +9,6 @@ fish_add_path --global --move \
     /Library/TeX/texbin \
     "$HOME/.local/bin" \
     "$HOME/.cargo/bin" \
-    "$HOME/.opencode/bin" \
     "$HOME/.lmstudio/bin" \
     "$HOME/.pub-cache/bin" \
     "$HOME/go/bin"
@@ -76,6 +75,7 @@ if type -q eza
     alias ls 'eza --icons --group-directories-first'
     alias ll 'eza -la --icons --group-directories-first'
     alias l 'eza -l --icons --group-directories-first'
+    alias tree 'eza --tree'
 else
     alias ls 'ls -G'
     alias ll 'ls -laG'
@@ -88,6 +88,8 @@ abbr -a ff fastfetch
 abbr -a hoshi hoshino
 abbr -a ocode opencode2
 abbr -a grep rg
+abbr -a df duf
+abbr -a du dust
 
 # Interactive counterpart to Zsh's global --help alias.
 if type -q bat

@@ -8,7 +8,6 @@ typeset -a local_paths
 for local_path in \
   "$HOME/.local/bin" \
   "$HOME/.cargo/bin" \
-  "$HOME/.opencode/bin" \
   "$HOME/.lmstudio/bin" \
   "$HOME/.pub-cache/bin" \
   "$HOME/go/bin"; do
@@ -108,10 +107,19 @@ if (( $+commands[eza] )); then
   alias ls='eza --icons --group-directories-first'
   alias ll='eza -la --icons --group-directories-first'
   alias l='eza -l --icons --group-directories-first'
+  alias tree='eza --tree'
 else
   alias ls='ls -G'
   alias ll='ls -laG'
   alias l='ls -lG'
+fi
+
+if (( $+commands[rg] )); then
+  alias grep='rg'
+fi
+
+if (( $+commands[duf] )); then
+  alias df='duf'
 fi
 
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
