@@ -1,0 +1,12 @@
+[preview]
+# Defaults (600x900) are in physical pixels, so on a Retina display the
+# preview fills well under half of a wide pane. Run `ya cache clear` after
+# changing these so cached thumbnails are regenerated.
+max_width  = 4096
+max_height = 4096
+
+[plugin]
+prepend_previewers = [
+  { mime = "video/*", run = "precise-video" },
+  { mime = "image/{png,jpeg,gif,webp,bmp,tiff}", run = "enlarge-image" },
+]

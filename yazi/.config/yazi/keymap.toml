@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = "shell -- qlmanage -p %h"
+desc = "Quick Look hovered file (macOS)"
