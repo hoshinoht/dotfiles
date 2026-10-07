@@ -5,7 +5,7 @@
 
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.config/git/ignore
 	editor = nvim
 	ignorecase = false
 	pager = delta
@@ -82,7 +82,7 @@
 [ghq]
 	root = ~/.ghq
 [init]
-	defaultBranch = main
+	defaultBranch = master
 
 [delta]
 	navigate = true
