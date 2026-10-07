@@ -46,6 +46,9 @@
   },
   "agent": {
     "sandbox_permissions": {
+      "network_hosts": [
+        "registry.npmjs.org"
+      ],
       "write_paths": [
         {
           "requested": "/Users/cantabile/.local/share/opencode/log",
@@ -56,6 +59,13 @@
     "default_profile": "write",
     "tool_permissions": {
       "tools": {
+        "delete_path": {
+          "always_allow": [
+            {
+              "pattern": "^opencode/"
+            }
+          ]
+        },
         "search_web": {
           "default": "allow"
         },
@@ -74,7 +84,7 @@
     "flexible": false,
     "default_model": {
       "provider": "zed.dev",
-      "model": "gpt-6-sol",
+      "model": "gpt-6-luna",
       "enable_thinking": true,
       "effort": "medium"
     },
