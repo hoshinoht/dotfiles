@@ -62,10 +62,10 @@ check() {
     python:install
   )
   local -a expected_tools=(
-    'uv=0.12.12'
-    'node=24.21.0'
+    'uv=0.12.23'
+    'node=26.10.0'
     'pnpm=11.17.0'
-    'bun=1.4.0'
+    'bun=1.4.2'
     'go=1.27.1'
   )
 
@@ -94,6 +94,19 @@ check() {
   [[ "${GOTOOLCHAIN:-}" == auto ]] \
     || die "GOTOOLCHAIN is ${GOTOOLCHAIN:-unset}, expected auto"
   printf 'mise configuration and public tasks are valid\n'
+
+  local dotfiles_root="${MISE_DOTFILES_ROOT:-$HOME/.dotfiles}"
+  if [[ -d "$dotfiles_root" ]]; then
+    printf 'validating dotfiles...\n'
+    (
+      cd "$dotfiles_root"
+      scripts/check-theme
+      ./bootstrap.sh --check
+      zsh -n zsh/.zshrc
+      fish -n fish/.config/fish/config.fish
+    )
+    printf 'all dotfiles checks passed\n'
+  fi
 }
 
 case "$action" in
