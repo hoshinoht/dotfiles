@@ -16,6 +16,12 @@
 [push]
 	default = simple
 	autoSetupRemote = true
+	followTags = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 
 [fetch]
 	prune = true
@@ -100,7 +106,7 @@
 	hyperlinks = true
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
@@ -115,3 +121,4 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
+	sort = version:refname
