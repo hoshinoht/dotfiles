@@ -46,6 +46,7 @@
   },
   "agent": {
     "sandbox_permissions": {
+      "allow_unsandboxed": true,
       "network_hosts": [
         "registry.npmjs.org"
       ],
